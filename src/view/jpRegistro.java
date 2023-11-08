@@ -3,13 +3,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import view.Material.VistaMate;
 import view.Personal.VistaPers;
 import static view.jDashboard.content;
 
-/**
- *
- * @author llagu
- */
+
 public class jpRegistro extends javax.swing.JPanel {
 
     public jpRegistro() {
@@ -37,6 +35,11 @@ public class jpRegistro extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1040, 520));
 
         btnMaterial.setBackground(new java.awt.Color(21, 67, 96));
+        btnMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMaterialMousePressed(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/material.png"))); // NOI18N
@@ -205,6 +208,20 @@ public class jpRegistro extends javax.swing.JPanel {
         panelSegundario.revalidate();
         panelSegundario.repaint();
     }//GEN-LAST:event_btnPersonalMousePressed
+
+    private void btnMaterialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaterialMousePressed
+         this.btnPersonal.setBackground(new Color(40,116,166));
+
+        // Abrir sección
+        VistaMate p1 = new VistaMate ();
+        p1.setSize(789, 449);
+        p1.setLocation(0, 0);
+
+        panelSegundario.removeAll();
+        panelSegundario.add(p1, BorderLayout.CENTER);
+        panelSegundario.revalidate();
+        panelSegundario.repaint();
+    }//GEN-LAST:event_btnMaterialMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
