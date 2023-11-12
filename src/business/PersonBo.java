@@ -6,6 +6,7 @@ import entity.implement.PersonImplDao;
 import entity.interfas.PersonDao;
 import java.sql.Connection;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class PersonBo {
@@ -79,4 +80,20 @@ public class PersonBo {
             }
         }
     }
+     public static DefaultComboBoxModel obtenerPersona() throws Exception {
+        DefaultComboBoxModel persona = null;
+        Connection con = Conexion.getConexion();
+        try {
+            PersonDao personDao = new PersonImplDao(con);
+            Vector vectorPersona = personDao.Combobox();
+            persona = new DefaultComboBoxModel(vectorPersona);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return persona;
+    } 
 }

@@ -3,6 +3,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import view.Maquinaria.VistaMaqui;
 import view.Material.VistaMate;
 import view.Personal.VistaPers;
 import static view.jDashboard.content;
@@ -40,51 +41,26 @@ public class jpRegistro extends javax.swing.JPanel {
                 btnMaterialMousePressed(evt);
             }
         });
+        btnMaterial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/material.png"))); // NOI18N
         jLabel2.setText("Material");
-
-        javax.swing.GroupLayout btnMaterialLayout = new javax.swing.GroupLayout(btnMaterial);
-        btnMaterial.setLayout(btnMaterialLayout);
-        btnMaterialLayout.setHorizontalGroup(
-            btnMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnMaterialLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btnMaterialLayout.setVerticalGroup(
-            btnMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnMaterialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        btnMaterial.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 6, -1, 34));
 
         btnEquipo.setBackground(new java.awt.Color(21, 67, 96));
         btnEquipo.setPreferredSize(new java.awt.Dimension(129, 45));
+        btnEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEquipoMousePressed(evt);
+            }
+        });
+        btnEquipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maquinaria.png"))); // NOI18N
         jLabel3.setText("Maquinaria");
-
-        javax.swing.GroupLayout btnEquipoLayout = new javax.swing.GroupLayout(btnEquipo);
-        btnEquipo.setLayout(btnEquipoLayout);
-        btnEquipoLayout.setHorizontalGroup(
-            btnEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnEquipoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel3)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        btnEquipoLayout.setVerticalGroup(
-            btnEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEquipoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        btnEquipo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 6, -1, 33));
 
         btnPersonal.setBackground(new java.awt.Color(21, 67, 96));
         btnPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,6 +198,20 @@ public class jpRegistro extends javax.swing.JPanel {
         panelSegundario.revalidate();
         panelSegundario.repaint();
     }//GEN-LAST:event_btnMaterialMousePressed
+
+    private void btnEquipoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEquipoMousePressed
+          this.btnPersonal.setBackground(new Color(40,116,166));
+
+        // Abrir sección
+        VistaMaqui p1 = new VistaMaqui ();
+        p1.setSize(789, 449);
+        p1.setLocation(0, 0);
+
+        panelSegundario.removeAll();
+        panelSegundario.add(p1, BorderLayout.CENTER);
+        panelSegundario.revalidate();
+        panelSegundario.repaint();
+    }//GEN-LAST:event_btnEquipoMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

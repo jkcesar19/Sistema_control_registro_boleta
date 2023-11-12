@@ -102,4 +102,18 @@ public class PersonImplDao implements PersonDao {
         }
     }
 
+    @Override
+    public Vector Combobox() throws SQLException {
+       Vector persona = new Vector();
+        String sql = "SELECT nombre FROM persona";
+        st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Person per = new Person();
+            per.setNombre(rs.getString("nombre"));
+            persona.add(per);
+        }
+        return persona;
+    }
+
 }

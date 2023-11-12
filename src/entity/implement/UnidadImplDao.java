@@ -50,7 +50,8 @@ public class UnidadImplDao implements UnidadDao {
 
     @Override
     public boolean modificar(Object object) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+//To change body of generated methods, choose Tools | Templates.
     }
 
 }

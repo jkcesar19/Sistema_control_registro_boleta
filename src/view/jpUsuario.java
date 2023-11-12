@@ -1,23 +1,16 @@
 package view;
 
-import business.PersonaBo;
-import entity.Persona;
-import entity.implement.PersonaDao;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import java.awt.BorderLayout;
+import view.Usuario.VistaUsuario;
 
-/**
- *
- * @author llagu
- */
+
 public class jpUsuario extends javax.swing.JPanel {
 
-    PersonaBo tab = new PersonaBo();
-
+   
     public jpUsuario() {
         initComponents();
-        cargar_tabla_persona();
-
+        cargar_vita_usuario();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -25,53 +18,41 @@ public class jpUsuario extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new component.table.Table();
+        panelSegundario = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1040, 520));
 
         jPanel1.setBackground(new java.awt.Color(250, 250, 250));
         jPanel1.setPreferredSize(new java.awt.Dimension(1040, 520));
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(null);
+        panelSegundario.setBackground(new java.awt.Color(51, 204, 0));
 
-        table1.setBackground(new java.awt.Color(255, 255, 255));
-        table1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Foto", "Nombre", "DNI", "Teléfono", "Dirección", "Email", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        table1.setShowHorizontalLines(false);
-        table1.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(table1);
+        javax.swing.GroupLayout panelSegundarioLayout = new javax.swing.GroupLayout(panelSegundario);
+        panelSegundario.setLayout(panelSegundarioLayout);
+        panelSegundarioLayout.setHorizontalGroup(
+            panelSegundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 789, Short.MAX_VALUE)
+        );
+        panelSegundarioLayout.setVerticalGroup(
+            panelSegundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 449, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 973, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(127, Short.MAX_VALUE)
+                .addComponent(panelSegundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(204, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(panelSegundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -89,34 +70,18 @@ public class jpUsuario extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private component.table.Table table1;
+    private javax.swing.JPanel panelSegundario;
     // End of variables declaration//GEN-END:variables
 
-    private void cargar_tabla_persona() {
-        DefaultTableModel model = (DefaultTableModel) table1.getModel();
-        PersonaDao dao = new PersonaDao();
-        Persona vo = new Persona();
-        ArrayList<Persona> list = dao.Listar_Archivo();
+    private void cargar_vita_usuario() {
+        // Abrir sección
+        VistaUsuario p1 = new VistaUsuario ();
+        p1.setSize(789, 449);
+        p1.setLocation(0, 0);
 
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                Object fila[] = new Object[7];
-                vo = list.get(i);
-                fila[0] = vo.getIcon();
-                fila[1] = vo.getNom();
-                fila[2] = vo.getDni();
-                fila[3] = vo.getTel();
-                fila[4] = vo.getDir();
-                fila[5] = vo.getCor();
-                fila[6] = vo.getEst();
-
-                model.addRow(fila);
-            }
-            table1.setModel(model);
-        }
-
-        table1.fixTable(jScrollPane1);
+        panelSegundario.removeAll();
+        panelSegundario.add(p1, BorderLayout.CENTER);
+        panelSegundario.revalidate();
+        panelSegundario.repaint();
     }
-
 }
