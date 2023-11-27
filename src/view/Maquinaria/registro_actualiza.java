@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static view.Maquinaria.VistaMaqui.PanelVistaMaquina;
+import static view.Maquinaria.lista_eliminar.prec;
 
 public class registro_actualiza extends javax.swing.JPanel {
 
@@ -294,9 +295,10 @@ public class registro_actualiza extends javax.swing.JPanel {
             this.txtMaquina.setText(lista_eliminar.maqu);
             this.txtDias.setText(lista_eliminar.dia);
             this.txtHoras.setText(lista_eliminar.hora);
+            this.txtPrecio.setText(""+lista_eliminar.prec);
             this.txtTotal.setText("" + lista_eliminar.tota);
-            this.txtF_inicio.setText(lista_eliminar.f_ini);
-            this.txtF_fin.setText(lista_eliminar.f_fin);
+            this.txtF_inicio.setText(maquina.getFecha_inicio());
+            this.txtF_fin.setText(maquina.getFecha_fin());
             this.txtTotal.setText("" + lista_eliminar.prec);
 
         }

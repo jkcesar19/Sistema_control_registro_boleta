@@ -3,8 +3,7 @@ package component.table;
 
 import component.ScrollBar;
 import component.ShadowRenderer;
-import component.table.panel.TableCell_Image;
-import component.table.panel.TableCell_Status;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Component;
@@ -93,11 +92,11 @@ public class Table extends JTable {
             int row = i;
             Rectangle r = getCellRect(row, 0, true);
             if (isRowSelected(i)) {
-                g2.setColor(new Color(17, 164, 232));
+                g2.setColor(new Color(40, 116, 166));
                 g2.drawRect(margin, r.getLocation().y + margin, getWidth() - margin * 2, rowHeight - space);
             }
             g2.drawImage(imageShadow, 0, r.getLocation().y, null);
-            g2.setColor(new Color(255, 109, 109));
+            g2.setColor(new Color(40, 116, 166));
             g2.fillRect(margin, r.getLocation().y + margin, 3, rowHeight - space);
         }
         g2.dispose();

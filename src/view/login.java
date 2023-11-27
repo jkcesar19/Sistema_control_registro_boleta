@@ -22,7 +22,7 @@ public class login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
 //        icono3();
-        icono2();
+//        icono2();
         icono1();
 
         plaseholder();
@@ -47,7 +47,8 @@ public class login extends javax.swing.JFrame {
         lblSystem = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        label_logo = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        imageAvatar1 = new view.component.ImageAvatar();
         label_fond = new javax.swing.JLabel();
         btn_ingresar = new javax.swing.JPanel();
         label_ingresar = new javax.swing.JLabel();
@@ -96,24 +97,29 @@ public class login extends javax.swing.JFrame {
         lblSystem.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         lblSystem.setForeground(new java.awt.Color(255, 255, 255));
         lblSystem.setText("SYSTEM");
-        jPanel1.add(lblSystem, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
+        jPanel1.add(lblSystem, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("COMPUTER");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Jk Cesar Llaguento Carlos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, -1, 40));
+        jLabel1.setText("Soluciones inmediatas para la industria");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, 40));
 
-        label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/pc.png"))); // NOI18N
-        jPanel1.add(label_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 300, 350));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Servicios Múltiples Cajamarca");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, -1, 40));
+
+        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        jPanel1.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 300, 160));
 
         label_fond.setBackground(new java.awt.Color(21, 67, 96));
         label_fond.setForeground(new java.awt.Color(102, 102, 255));
-        label_fond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fon.JPG"))); // NOI18N
+        label_fond.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fond.JPG"))); // NOI18N
         jPanel1.add(label_fond, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 300, 480));
 
         btn_ingresar.setBackground(new java.awt.Color(18, 63, 0));
@@ -139,7 +145,9 @@ public class login extends javax.swing.JFrame {
         btn_ingresar.setLayout(btn_ingresarLayout);
         btn_ingresarLayout.setHorizontalGroup(
             btn_ingresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addGroup(btn_ingresarLayout.createSequentialGroup()
+                .addComponent(label_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
         btn_ingresarLayout.setVerticalGroup(
             btn_ingresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,8 +280,9 @@ public class login extends javax.swing.JFrame {
                 usua = this.jtex_usua.getText().trim();
                 pass = new String(this.jtex_pass.getPassword()).trim();
                 Usuario usuario = UsuarioBo.validarUsuario(usua, pass);
-//                Dashboard.adm = usuario.getAdmi();
-//                Dashboard.usuaa = usuario.getUsua();
+                jDashboard.adm = usuario.getRol();
+                jDashboard.usuaa = usuario.getPersona();
+                jDashboard.usua = usuario.getUsuario();
 
                 
                 
@@ -300,11 +309,13 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel btn_ingresar;
     private javax.swing.JPanel exitbt;
     private javax.swing.JPanel header;
+    private view.component.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -312,7 +323,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField jtex_usua;
     private javax.swing.JLabel label_fond;
     private javax.swing.JLabel label_ingresar;
-    private javax.swing.JLabel label_logo;
     private javax.swing.JLabel label_salir;
     private javax.swing.JLabel lblSystem;
     // End of variables declaration//GEN-END:variables
@@ -327,14 +337,14 @@ public class login extends javax.swing.JFrame {
 
     }
 
-    private void icono2() {
-        ImageIcon imagen = new ImageIcon("src/Img/pc.png");
-
-        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-                label_logo.getWidth(), label_logo.getHeight(), Image.SCALE_DEFAULT));
-        label_logo.setIcon(icono);
-        this.repaint();
-    }
+//    private void icono2() {
+//        ImageIcon imagen = new ImageIcon("src/Img/pc.png");
+//
+//        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
+//                label_logo.getWidth(), label_logo.getHeight(), Image.SCALE_DEFAULT));
+//        label_logo.setIcon(icono);
+//        this.repaint();
+//    }
 
     private void plaseholder() {
         TextPrompt prueba0 = new TextPrompt(" Ingrese el usuario", this.jtex_usua);

@@ -24,8 +24,6 @@ public class MaquinaBo {
             columnas.add("Dias");
             columnas.add("Precio");
             columnas.add("Total");
-            columnas.add("F Inicio");
-            columnas.add("F Fin");
 
             maquinaTableModel = new DefaultTableModel(datoMaquina, columnas);
 

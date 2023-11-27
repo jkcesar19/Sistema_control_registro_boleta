@@ -5,10 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.time.LocalDate;
 
-/**
- * @fecha: 28 - 12 - 2022
- * @author: llaguento Carlos Jk Cesar
- */
 public class jDashboard extends javax.swing.JFrame {
 
     public static int urgente;
@@ -18,7 +14,7 @@ public class jDashboard extends javax.swing.JFrame {
 
     public static String adm;
     public static String usuaa;
-    public static byte[] bite = null;
+    public static String usua;
 
     int xMouse;
     int yMouse;
@@ -27,7 +23,8 @@ public class jDashboard extends javax.swing.JFrame {
         initComponents();
         accionar_boton.accion_button(jDashboard.this, Header);
 
-//        this.jlabAdmin.setText(adm);
+        this.jlabAdmin.setText(usuaa);
+        this.jlabPerfil.setText(adm +": ");
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
@@ -36,7 +33,7 @@ public class jDashboard extends javax.swing.JFrame {
             "Octubre", "Noviembre", "Diciemrbre"};
         this.jlfecha.setText("Hoy es " + dia + " de " + meses[month - 1] + " de " + year);
 
-        jpPrincipal.setBackground(new Color(40,116,166));
+        jpPrincipal.setBackground(new Color(40, 116, 166));
         Principal p1 = new Principal();
         p1.setSize(1039, 521);
         p1.setLocation(0, 0);
@@ -57,8 +54,6 @@ public class jDashboard extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jpPrincipal = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jpReporte = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jpMovimiento = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jpRegistro = new javax.swing.JPanel();
@@ -115,43 +110,6 @@ public class jDashboard extends javax.swing.JFrame {
 
         Menu.add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 250, 50));
 
-        jpReporte.setBackground(new java.awt.Color(21, 67, 96));
-        jpReporte.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpReporteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpReporteMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jpReporteMousePressed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stock.png"))); // NOI18N
-        jLabel5.setText("Reposte");
-
-        javax.swing.GroupLayout jpReporteLayout = new javax.swing.GroupLayout(jpReporte);
-        jpReporte.setLayout(jpReporteLayout);
-        jpReporteLayout.setHorizontalGroup(
-            jpReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpReporteLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
-        jpReporteLayout.setVerticalGroup(
-            jpReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpReporteLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        Menu.add(jpReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, -1, 50));
-
         jpMovimiento.setBackground(new java.awt.Color(21, 67, 96));
         jpMovimiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -168,7 +126,7 @@ public class jDashboard extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/5.png"))); // NOI18N
-        jLabel3.setText("Carta");
+        jLabel3.setText("Ticket");
 
         javax.swing.GroupLayout jpMovimientoLayout = new javax.swing.GroupLayout(jpMovimiento);
         jpMovimiento.setLayout(jpMovimientoLayout);
@@ -389,54 +347,45 @@ public class jDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_TitleMouseDragged
 
     private void jpPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseEntered
-        this.jpPrincipal.setBackground(new Color(40,116,166));
+        this.jpPrincipal.setBackground(new Color(40, 116, 166));
         this.jpPrincipal.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jpPrincipalMouseEntered
 
     private void jpPrincipalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseExited
-        this.jpPrincipal.setBackground(new Color(21,67,96));
+        this.jpPrincipal.setBackground(new Color(21, 67, 96));
     }//GEN-LAST:event_jpPrincipalMouseExited
 
     private void jpUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpUsuarioMouseEntered
-        this.jpUsuario.setBackground(new Color(40,116,166));
+        this.jpUsuario.setBackground(new Color(40, 116, 166));
         this.jpUsuario.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jpUsuarioMouseEntered
 
     private void jpUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpUsuarioMouseExited
-        this.jpUsuario.setBackground(new Color(21,67,96));
+        this.jpUsuario.setBackground(new Color(21, 67, 96));
     }//GEN-LAST:event_jpUsuarioMouseExited
 
     private void jpRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRegistroMouseEntered
-        this.jpRegistro.setBackground(new Color(40,116,166));
+        this.jpRegistro.setBackground(new Color(40, 116, 166));
         this.jpRegistro.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     }//GEN-LAST:event_jpRegistroMouseEntered
 
     private void jpRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRegistroMouseExited
-        this.jpRegistro.setBackground(new Color(21,67,96));
+        this.jpRegistro.setBackground(new Color(21, 67, 96));
     }//GEN-LAST:event_jpRegistroMouseExited
 
     private void jpMovimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMovimientoMouseEntered
-        this.jpMovimiento.setBackground(new Color(40,116,166));
+        this.jpMovimiento.setBackground(new Color(40, 116, 166));
         this.jpMovimiento.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jpMovimientoMouseEntered
 
     private void jpMovimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMovimientoMouseExited
-        this.jpMovimiento.setBackground(new Color(21,67,96));
-        
+        this.jpMovimiento.setBackground(new Color(21, 67, 96));
+
     }//GEN-LAST:event_jpMovimientoMouseExited
 
-    private void jpReporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpReporteMouseEntered
-        this.jpReporte.setBackground(new Color(40,116,166));
-        this.jpReporte.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_jpReporteMouseEntered
-
-    private void jpReporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpReporteMouseExited
-        this.jpReporte.setBackground(new Color(21,67,96));
-    }//GEN-LAST:event_jpReporteMouseExited
-
     private void jpPrincipalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMousePressed
-        this.jpPrincipal.setBackground(new Color(40,116,166));
+        this.jpPrincipal.setBackground(new Color(40, 116, 166));
 
         // Abrir sección
         Principal p1 = new Principal();
@@ -450,7 +399,7 @@ public class jDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPrincipalMousePressed
 
     private void jpUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpUsuarioMousePressed
-        this.jpUsuario.setBackground(new Color(40,116,166));
+        this.jpUsuario.setBackground(new Color(40, 116, 166));
         jpUsuario u1 = new jpUsuario();
         u1.setSize(1039, 521);
         u1.setLocation(0, 0);
@@ -462,7 +411,7 @@ public class jDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jpUsuarioMousePressed
 
     private void jpRegistroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRegistroMousePressed
-        this.jpRegistro.setBackground(new Color(40,116,166));
+        this.jpRegistro.setBackground(new Color(40, 116, 166));
 
         // Abrir sección
         jpRegistro p1 = new jpRegistro();
@@ -476,31 +425,17 @@ public class jDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jpRegistroMousePressed
 
     private void jpMovimientoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMovimientoMousePressed
-        this.jpMovimiento.setBackground(new Color(40,116,166));
+        this.jpMovimiento.setBackground(new Color(40, 116, 166));
         // Abrir sección
-//        jpMovimiento p1 = new jpMovimiento();
-//        p1.setSize(1039, 521);
-//        p1.setLocation(0, 0);
-//
-//        content.removeAll();
-//        content.add(p1, BorderLayout.CENTER);
-//        content.revalidate();
-//        content.repaint();
+        jpTicket p1 = new jpTicket();
+        p1.setSize(1039, 520);
+        p1.setLocation(0, 0);
+
+        content.removeAll();
+        content.add(p1, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_jpMovimientoMousePressed
-
-    private void jpReporteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpReporteMousePressed
-        this.jpReporte.setBackground(new Color(40,116,166));
-
-        // Abrir sección
-//        jpReporte p1 = new jpReporte();
-//        p1.setSize(1039, 521);
-//        p1.setLocation(0, 0);
-//
-//        content.removeAll();
-//        content.add(p1, BorderLayout.CENTER);
-//        content.revalidate();
-//        content.repaint();
-    }//GEN-LAST:event_jpReporteMousePressed
 
     public static void main(String args[]) {
 
@@ -525,7 +460,6 @@ public class jDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jlabAdmin;
     private javax.swing.JLabel jlabPerfil;
@@ -533,7 +467,6 @@ public class jDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jpMovimiento;
     private javax.swing.JPanel jpPrincipal;
     private javax.swing.JPanel jpRegistro;
-    private javax.swing.JPanel jpReporte;
     private javax.swing.JPanel jpUsuario;
     // End of variables declaration//GEN-END:variables
 

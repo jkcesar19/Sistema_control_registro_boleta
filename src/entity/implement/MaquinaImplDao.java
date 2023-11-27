@@ -36,8 +36,7 @@ public class MaquinaImplDao implements MaquinaDao {
             maquina.add(rs.getString("dias"));
             maquina.add(rs.getDouble("precio_hora"));
             maquina.add(rs.getDouble("total"));
-            maquina.add(rs.getString("fecha_inicio"));
-            maquina.add(rs.getString("fecha_fin"));
+            
             listaMaquina.add(maquina);
         }
         return listaMaquina;
@@ -115,7 +114,7 @@ public class MaquinaImplDao implements MaquinaDao {
         ResultSet rs = null;
         PreparedStatement pst = null;
         try {
-            String sql = "SELECT p.razonsocial, m.fecha, m.serie, m.numero \n"
+            String sql = "SELECT p.razonsocial, m.fecha, m.serie, m.numero, m.fecha_inicio, m.fecha_fin \n"
                     + "FROM maquinaria m INNER JOIN proveedor p ON m.idprove = p.idprove \n"
                     + "WHERE m.estado = 1 AND m.idMaquinaria =" + id;
             pst = con.prepareStatement(sql);
@@ -126,6 +125,8 @@ public class MaquinaImplDao implements MaquinaDao {
                 maquina.setFecha(rs.getString(2));
                 maquina.setSerie(rs.getString(3));
                 maquina.setNumero(rs.getString(4));
+                maquina.setFecha_inicio(rs.getString(5));
+                maquina.setFecha_fin(rs.getString(6));
 
             }
         } catch (Exception e) {

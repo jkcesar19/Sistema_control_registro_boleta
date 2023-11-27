@@ -1,22 +1,26 @@
-
 package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import view.Cliente.VistaCliente;
 import view.Maquinaria.VistaMaqui;
 import view.Material.VistaMate;
 import view.Personal.VistaPers;
-import static view.jDashboard.content;
-
 
 public class jpRegistro extends javax.swing.JPanel {
 
+
+
     public jpRegistro() {
         initComponents();
-        
+
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,7 +34,7 @@ public class jpRegistro extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnOtros = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        panelSegundario = new javax.swing.JPanel();
+        panelSegundario = new FondoPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1040, 520));
@@ -92,10 +96,15 @@ public class jpRegistro extends javax.swing.JPanel {
         );
 
         btnOtros.setBackground(new java.awt.Color(21, 67, 96));
+        btnOtros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnOtrosMousePressed(evt);
+            }
+        });
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/otro.png"))); // NOI18N
-        jLabel4.setText("Otros");
+        jLabel4.setText("Cliente");
 
         javax.swing.GroupLayout btnOtrosLayout = new javax.swing.GroupLayout(btnOtros);
         btnOtros.setLayout(btnOtrosLayout);
@@ -114,7 +123,7 @@ public class jpRegistro extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        panelSegundario.setBackground(new java.awt.Color(0, 102, 102));
+        panelSegundario.setBackground(new java.awt.Color(0, 102, 255));
 
         javax.swing.GroupLayout panelSegundarioLayout = new javax.swing.GroupLayout(panelSegundario);
         panelSegundario.setLayout(panelSegundarioLayout);
@@ -150,8 +159,8 @@ public class jpRegistro extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(btnMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(btnMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnOtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,8 +181,8 @@ public class jpRegistro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPersonalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonalMousePressed
-        this.btnPersonal.setBackground(new Color(40,116,166));
-
+        this.btnPersonal.setBackground(new Color(40, 116, 166));
+//        img_regis.setVisible(false);
         // Abrir sección
         VistaPers p1 = new VistaPers();
         p1.setSize(789, 449);
@@ -186,10 +195,10 @@ public class jpRegistro extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPersonalMousePressed
 
     private void btnMaterialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaterialMousePressed
-         this.btnPersonal.setBackground(new Color(40,116,166));
-
+        this.btnMaterial.setBackground(new Color(40, 116, 166));
+//img_regis.setVisible(false);
         // Abrir sección
-        VistaMate p1 = new VistaMate ();
+        VistaMate p1 = new VistaMate();
         p1.setSize(789, 449);
         p1.setLocation(0, 0);
 
@@ -200,10 +209,10 @@ public class jpRegistro extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMaterialMousePressed
 
     private void btnEquipoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEquipoMousePressed
-          this.btnPersonal.setBackground(new Color(40,116,166));
-
+        this.btnEquipo.setBackground(new Color(40, 116, 166));
+//img_regis.setVisible(false);
         // Abrir sección
-        VistaMaqui p1 = new VistaMaqui ();
+        VistaMaqui p1 = new VistaMaqui();
         p1.setSize(789, 449);
         p1.setLocation(0, 0);
 
@@ -212,6 +221,20 @@ public class jpRegistro extends javax.swing.JPanel {
         panelSegundario.revalidate();
         panelSegundario.repaint();
     }//GEN-LAST:event_btnEquipoMousePressed
+
+    private void btnOtrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOtrosMousePressed
+        this.btnOtros.setBackground(new Color(40, 116, 166));
+//img_regis.setVisible(false);
+        // Abrir sección
+        VistaCliente p1 = new VistaCliente();
+        p1.setSize(789, 449);
+        p1.setLocation(0, 0);
+
+        panelSegundario.removeAll();
+        panelSegundario.add(p1, BorderLayout.CENTER);
+        panelSegundario.revalidate();
+        panelSegundario.repaint();
+    }//GEN-LAST:event_btnOtrosMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -226,4 +249,18 @@ public class jpRegistro extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelSegundario;
     // End of variables declaration//GEN-END:variables
+ 
+
+    class FondoPanel extends JPanel {
+
+        private Image imagen;
+
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/img/fon_tra.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(),getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+
+        }
+    }
 }

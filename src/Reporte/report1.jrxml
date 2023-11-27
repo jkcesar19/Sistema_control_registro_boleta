@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="9a8e6adf-f908-441d-8d33-cef9e2cabd7c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="idt_t" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idtik_e" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT idT, nombre, razonsocial, ruc, direccion, telefono, serie, numero, subtotal, total, fecha, descripcion, dias, horas, cantidad, precio, total_de FROM vista_ticket WHERE idT = $P{idtik_e};]]>
+	</queryString>
+	<field name="idT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="razonsocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ruc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="serie" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dias" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_de" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="170" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="123" y="0" width="286" height="21" uuid="c5381f7b-ffcd-45b6-babe-7750d008671a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[SERMUCAJ-Servicios Múltiples Cajamarca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="123" y="21" width="286" height="16" uuid="2961ec51-7f4a-44c1-8a79-3214e8caeca8"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RUC. N°: 5647382981]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="130" y="52" width="286" height="16" uuid="d90ad539-9ff3-487e-b060-366fc731ce88"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[AV. heroes del cenepa 1613, Cajamarca, Peru]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="130" y="68" width="286" height="16" uuid="9c275602-f0dc-44fc-9848-f8917e39341b"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[servicios.multiples.cajamarca@gmail.com]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="117" width="555" height="53" uuid="0f6aaecb-950a-495d-9dca-b5e0b1d684e5"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="Column header" x="0" y="117" width="78" height="15" forecolor="#000000" uuid="2c7e1ec3-dc13-4e4f-82f8-98f9d4e90676"/>
+				<text><![CDATA[Razon social: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="302" y="117" width="36" height="15" forecolor="#000000" uuid="92bb9265-1418-4dcf-8edb-4d18daa44153"/>
+				<text><![CDATA[RUC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="145" width="62" height="15" forecolor="#000000" uuid="ccaf9457-da18-4ead-962d-2b33991d1e59"/>
+				<text><![CDATA[dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="275" y="145" width="56" height="15" forecolor="#000000" uuid="2efeb619-9dba-45c4-9ff6-75c0ff6ce8d5"/>
+				<text><![CDATA[telefono]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="62" y="145" width="213" height="15" uuid="6e8776d0-885d-40fe-97c5-94b3d5d6e945"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="331" y="145" width="78" height="15" uuid="b1dca20b-78f2-4095-87ac-2c3588f175c0"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="228" y="37" width="32" height="15" uuid="3d6a5aef-9ab8-4fb6-9cc2-fa31a1852d49"/>
+				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="260" y="37" width="53" height="15" uuid="72ac524b-2cfc-4d3b-96b0-6847f9096874"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="416" y="145" width="131" height="15" forecolor="#000000" uuid="b5d3b4f8-2bcb-461b-8bfa-c2bcdf1436fe"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="117" width="67" height="15" uuid="bb82cf1e-2fac-4bf6-8935-67f4ce868b0b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="117" width="224" height="15" uuid="2afbe231-06c0-4217-8e79-7b0d5b73cd06"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{razonsocial}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="428" y="0" width="119" height="106" uuid="41ccab01-7b4f-4457-89cb-da5146a7466b"/>
+				<imageExpression><![CDATA["C:\\Users\\llagu\\OneDrive\\Escritorio\\Proyecto 2023\\ID NetBeans\\Proyecto_2023_002\\src\\Reporte\\n.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="5" width="555" height="20" backcolor="#666666" uuid="cbac74b5-6a36-4a7a-9fe9-21fff88faa91"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="338" height="15" uuid="88689b7b-6490-4223-a824-9b2d54a8575f"/>
+					<text><![CDATA[Descripción de material, maquinaria, perosnal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="342" y="0" width="39" height="15" uuid="d1e4e1ef-6128-4fed-9cd6-1722afc11bbe"/>
+					<text><![CDATA[Días]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="381" y="0" width="39" height="15" uuid="2ed974d6-931b-47d8-bf9d-582d730f507a"/>
+					<text><![CDATA[Horas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="420" y="0" width="51" height="15" uuid="59b3b819-e56b-4806-a513-6a84bf856c52"/>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="471" y="0" width="42" height="15" uuid="bbaeccb3-0f88-435c-8ce9-6075c12ceaab"/>
+					<text><![CDATA[Precio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="513" y="0" width="34" height="15" uuid="a58677e1-2279-4a68-adbb-cec31af1d213"/>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="1" width="555" height="15" uuid="ad6064aa-5367-4196-b8bc-d662edb608ca"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="338" height="15" uuid="c298f2c0-99c0-475a-ad7b-fc825aba84e6"/>
+					<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="381" y="0" width="39" height="15" uuid="25d11131-0851-4c7e-8ae6-9608a5857e50"/>
+					<textFieldExpression><![CDATA[$F{horas}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="420" y="0" width="51" height="15" uuid="381e3194-4861-4d84-b519-7cad2904fe72"/>
+					<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="471" y="0" width="42" height="15" uuid="8012cb0f-8d33-46ea-8f7f-c7c0276c9f10"/>
+					<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="513" y="0" width="34" height="15" uuid="c85d63a4-5285-4fad-bd5b-c4b955496931"/>
+					<textFieldExpression><![CDATA[$F{total_de}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="16" width="555" height="1" uuid="f1a150ae-7c4a-46c7-8143-1d4b9017d769"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="342" y="0" width="39" height="15" uuid="6a90f1ed-8361-4f9d-a65d-4e1d89329731"/>
+				<textFieldExpression><![CDATA[$F{dias}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="157" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="409" y="15" width="52" height="15" forecolor="#000000" uuid="d597891c-9e46-42c3-b7dc-9e69ee4a0162"/>
+				<text><![CDATA[Total: S/.]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="471" y="15" width="76" height="15" uuid="382f3f22-cefc-4f59-ab1e-d59bdb345295"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="390" y="41" width="71" height="15" forecolor="#000000" uuid="65b4076d-54ab-4ed8-b9fd-5087cf1011ea"/>
+				<text><![CDATA[Subtotal: S/.]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="471" y="41" width="76" height="15" uuid="7818795e-d8d6-4851-b7c4-f8f83b46891a"/>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

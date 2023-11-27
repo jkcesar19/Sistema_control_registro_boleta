@@ -16,8 +16,7 @@ public class lista_eliminar extends javax.swing.JPanel {
     protected static String dia;
     protected static double prec;
     protected static double tota;
-    protected static String f_ini;
-    protected static String f_fin;
+    
 
 
     public lista_eliminar() {
@@ -122,8 +121,7 @@ public class lista_eliminar extends javax.swing.JPanel {
             dia = this.MaquinaTable.getValueAt(index, 3).toString();
             prec = Double.parseDouble(this.MaquinaTable.getValueAt(index, 4).toString());
             tota = Double.parseDouble(this.MaquinaTable.getValueAt(index, 5).toString());
-            f_ini = this.MaquinaTable.getValueAt(index, 6).toString();
-            f_fin = this.MaquinaTable.getValueAt(index, 7).toString();
+            
             
         } catch (Exception e) {
 
