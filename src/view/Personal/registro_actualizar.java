@@ -308,7 +308,7 @@ public class registro_actualizar extends javax.swing.JPanel {
         objPerson.setTelefono(Integer.parseInt(this.txtTelefono.getText()));
         objPerson.setCorreo(this.txtCorreo.getText());
         objPerson.setSexo(this.ComboSexo.getSelectedItem().toString());
-        objPerson.setCan_hijo(Integer.parseInt(this.txtHijos.getText()));
+       
 
         if (cheEstado.isSelected() == true) {
             objPerson.setEstado("Activo");
@@ -318,9 +318,11 @@ public class registro_actualizar extends javax.swing.JPanel {
 
         if (cheHijoos.isSelected() == true) {
             objPerson.setHijo("SI");
+             objPerson.setCan_hijo(Integer.parseInt(this.txtHijos.getText()));
 
         } else {
             objPerson.setHijo("NO");
+             objPerson.setCan_hijo(0);
         }
 
         if (raSoltero.isSelected() == true) {

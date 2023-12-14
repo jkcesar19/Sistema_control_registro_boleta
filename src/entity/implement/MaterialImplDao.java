@@ -32,7 +32,8 @@ public class MaterialImplDao implements MaterialDao {
             Vector material = new Vector();
             material.add(rs.getInt("idMaterial"));
             material.add(rs.getString("material"));
-            material.add(rs.getString("cantidad"));
+            material.add(rs.getString("stock_incial"));
+            material.add(rs.getString("stock_final"));
             material.add(rs.getString("unidad_medida"));
             material.add(rs.getDouble("precio"));
             material.add(rs.getDouble("total"));
@@ -111,9 +112,9 @@ public class MaterialImplDao implements MaterialDao {
         ResultSet rs = null;
         PreparedStatement pst = null;
         try {
-            String sql = "SELECT p.razonsocial, m.fecha_ingreso, m.serie, m.numero  \n"
+            String sql = "SELECT p.razonsocial, m.fecha_ingreso, m.serie, m.numero,m.stock_final, m.estado  \n"
                     + "FROM material m INNER JOIN proveedor p ON m.idprove = p.idprove\n"
-                    + "WHERE idMaterial = "+id;
+                    + "WHERE idMaterial = " + id;
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             if (rs.next()) {
@@ -122,6 +123,8 @@ public class MaterialImplDao implements MaterialDao {
                 material.setFecha_ingreso(rs.getString(2));
                 material.setSerie(rs.getString(3));
                 material.setNumero(rs.getString(4));
+                material.setCantidad(rs.getString(5));
+                material.setEstado(rs.getInt(6));
 
             }
         } catch (Exception e) {
@@ -134,6 +137,41 @@ public class MaterialImplDao implements MaterialDao {
             }
         }
         return material;
+    }
+
+    @Override
+    public boolean actualizar_stock(Object object) throws SQLException {
+        objMaterial = (Material) object;
+        try {
+            String sql = "{CALL,pro_actualizar_stock_material(?,?,?)}";
+            cst = con.prepareCall(sql);
+            cst.setString(1, objMaterial.getCantidad());
+            cst.setInt(2, objMaterial.getEstado());
+            cst.setInt(3, objMaterial.getIdMaterial());
+            cst.execute();
+            cst.close();
+            return true;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public Vector Lista_material_ticket() throws SQLException {
+        Vector listaMaterial = new Vector();
+        String sql = "SELECT * FROM vista_material_ticket;";
+        st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Vector material = new Vector();
+            material.add(rs.getInt("idMaterial"));
+            material.add(rs.getString("material"));
+            material.add(rs.getString("stock_final"));
+            material.add(rs.getString("unidad_medida"));
+            material.add(rs.getDouble("precio"));
+            listaMaterial.add(material);
+        }
+        return listaMaterial;
     }
 
 }

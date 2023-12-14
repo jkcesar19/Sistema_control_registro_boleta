@@ -10,6 +10,7 @@ public class Material {
     private String numero;
     private String material;
     private String cantidad;
+    private int stock_final;
     private String unidad;
     private Double precio;
     private Double total;
@@ -102,6 +103,14 @@ public class Material {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public int getStock_final() {
+        return stock_final;
+    }
+
+    public void setStock_final(int stock_final) {
+        this.stock_final = stock_final;
     }
 
 }

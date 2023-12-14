@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2023 a las 20:18:31
+-- Tiempo de generación: 14-12-2023 a las 21:44:30
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -27,6 +27,10 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_actualizar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10), IN `_estado` VARCHAR(10), IN `_id` INT(11))   BEGIN 
 UPDATE persona SET nombre = _nombre, num_dni = _dni, direccion = _direccion, telefono = _telefono , correo = _correo, es_civil = _civil, hijo = _hijo, can_hijo = _can_hijo, sexo = _sexo, estado = _estado WHERE idpersona = _id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_actualizar_stock_material` (IN `_canti` VARCHAR(11), IN `_estado` INT(11), IN `_id` INT(11))   BEGIN 
+UPDATE material SET stock_final = _canti,estado = _estado WHERE idMaterial= _id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_eliminar_cliente` (IN `_id` INT(11))   BEGIN
@@ -67,7 +71,8 @@ INSERT INTO maquinaria(idMaquinaria, idprove, fecha, serie, numero, maquina, hor
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_registrar_material` (IN `_prove` VARCHAR(30), IN `_fecha_ingreso` VARCHAR(11), IN `_serie` VARCHAR(11), IN `_numero` VARCHAR(11), IN `_material` VARCHAR(100), IN `_cantidad` VARCHAR(11), IN `_unidad` VARCHAR(10), IN `_precio` DECIMAL(11,2), IN `_total` DECIMAL(11,2), IN `_estado` INT(2))   BEGIN 
-INSERT INTO material(idMaterial, idprove, fecha_ingreso, serie, numero, material, cantidad, idunidad, precio, total, estado) VALUES (NULL,(SELECT P.idprove FROM proveedor P WHERE P.razonsocial = _prove), _fecha_ingreso, _serie, _numero, _material, _cantidad,(SELECT U.id FROM unidad_medida U WHERE U.unidad_medida = _unidad),_precio, _total, _estado);
+INSERT INTO material(idMaterial, idprove, fecha_ingreso, serie, numero, material, cantidad,stock_final, idunidad, precio, total, estado) 
+VALUES (NULL,(SELECT P.idprove FROM proveedor P WHERE P.razonsocial = _prove), _fecha_ingreso, _serie, _numero, _material, _cantidad,_cantidad,(SELECT U.id FROM unidad_medida U WHERE U.unidad_medida = _unidad),_precio, _total, _estado);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_registrar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10), IN `_estado` VARCHAR(10))   BEGIN 
@@ -187,7 +192,13 @@ INSERT INTO `detalle_ticket` (`iddt`, `idTicket`, `descripcion`, `dias`, `horas`
 (42, 18, 'Excavadora de orugas Caterpill', 2, 8, 14, '300.00', '4800.00'),
 (43, 19, 'Jk Cesar Llaguento Carlos', 3, 0, 0, '4.00', '8.00'),
 (44, 19, 'Clavo de calamina acerado de 3', 0, 0, 1, '4.00', '2.00'),
-(45, 19, 'Excavadora de orugas Caterpill', 2, 8, 1, '300.00', '4800.00');
+(45, 19, 'Excavadora de orugas Caterpill', 2, 8, 1, '300.00', '4800.00'),
+(46, 20, 'Jk Cesar Llaguento Carlos', 3, 0, 0, '4.00', '12.00'),
+(47, 20, 'Cemento Apu ', 0, 0, 14, '25.00', '350.00'),
+(48, 20, 'Excavadora de orugas Caterpill', 2, 8, 14, '300.00', '4800.00'),
+(49, 20, 'Clavo de calamina acerado de 3', 0, 0, 1, '4.00', '2.00'),
+(50, 21, 'Jk Cesar Llaguento Carlos', 3, 0, 0, '40.00', '120.00'),
+(51, 21, 'Clavo de calamina acerado de 3', 0, 0, 1, '4.00', '2.00');
 
 -- --------------------------------------------------------
 
@@ -232,6 +243,7 @@ CREATE TABLE `material` (
   `numero` varchar(11) NOT NULL,
   `material` varchar(100) NOT NULL,
   `cantidad` varchar(10) NOT NULL,
+  `stock_final` int(11) NOT NULL,
   `idunidad` int(11) NOT NULL,
   `precio` decimal(11,2) NOT NULL,
   `total` decimal(11,2) NOT NULL,
@@ -242,9 +254,9 @@ CREATE TABLE `material` (
 -- Volcado de datos para la tabla `material`
 --
 
-INSERT INTO `material` (`idMaterial`, `idprove`, `fecha_ingreso`, `serie`, `numero`, `material`, `cantidad`, `idunidad`, `precio`, `total`, `estado`) VALUES
-(1, 2, '08-11.2023', '001', 'N° 000001', 'Clavo de calamina acerado de 3cm ', '1', 1, '4.00', '2.00', 1),
-(2, 1, '08-11-2023', '001', 'N° 000002', 'Cemento Apu ', '14', 1, '25.00', '350.00', 1);
+INSERT INTO `material` (`idMaterial`, `idprove`, `fecha_ingreso`, `serie`, `numero`, `material`, `cantidad`, `stock_final`, `idunidad`, `precio`, `total`, `estado`) VALUES
+(1, 2, '08-11.2023', '001', 'N° 000001', 'Clavo de calamina acerado de 3cm ', '10', 8, 1, '4.00', '2.00', 1),
+(2, 1, '08-11-2023', '001', 'N° 000002', 'Cemento Apu ', '20', 20, 1, '25.00', '350.00', 1);
 
 -- --------------------------------------------------------
 
@@ -369,7 +381,9 @@ INSERT INTO `ticket` (`idT`, `idUsuario`, `idCliente`, `serie`, `numero`, `subto
 (16, 1, 1, 'F0001', '0016', '4814.00', '4814.00', '2023-11-21 04:20:04'),
 (17, 1, 1, 'F0001', '00017', '5312.00', '5312.00', '2023-11-21 06:38:16'),
 (18, 1, 1, 'F0001', '00018', '5352.00', '5352.00', '2023-11-21 06:40:44'),
-(19, 1, 2, 'F0001', '00019', '4810.00', '4810.00', '2023-11-27 19:16:31');
+(19, 1, 2, 'F0001', '00019', '4810.00', '4810.00', '2023-11-27 19:16:31'),
+(20, 1, 1, 'F0001', '00020', '5164.00', '5164.00', '2023-11-27 19:28:19'),
+(21, 3, 1, 'F0001', '00021', '4922.00', '4922.00', '2023-11-27 21:08:37');
 
 -- --------------------------------------------------------
 
@@ -413,7 +427,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `usuario`, `passwor`, `idrol`, `idpersona`, `estado`) VALUES
 (1, 'jkcesar', 1234, 1, 1, 1),
-(2, 'Pedro', 12345, 1, 2, 0);
+(2, 'Pedro', 12345, 1, 2, 0),
+(3, 'marin', 12345, 1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -439,10 +454,25 @@ CREATE TABLE `vista_maquina` (
 CREATE TABLE `vista_material` (
 `idMaterial` int(11)
 ,`material` varchar(100)
-,`cantidad` varchar(10)
+,`stock_incial` varchar(10)
+,`stock_final` int(11)
 ,`unidad_medida` varchar(11)
 ,`precio` decimal(11,2)
 ,`total` decimal(11,2)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vista_material_ticket`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vista_material_ticket` (
+`idMaterial` int(11)
+,`material` varchar(100)
+,`stock_final` int(11)
+,`unidad_medida` varchar(11)
+,`precio` decimal(11,2)
 );
 
 -- --------------------------------------------------------
@@ -501,7 +531,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vista_material`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_material`  AS SELECT `m`.`idMaterial` AS `idMaterial`, `m`.`material` AS `material`, `m`.`cantidad` AS `cantidad`, `u`.`unidad_medida` AS `unidad_medida`, `m`.`precio` AS `precio`, `m`.`total` AS `total` FROM (`material` `m` join `unidad_medida` `u` on(`m`.`idunidad` = `u`.`id`)) WHERE `m`.`estado` = 11  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_material`  AS SELECT `m`.`idMaterial` AS `idMaterial`, `m`.`material` AS `material`, `m`.`cantidad` AS `stock_incial`, `m`.`stock_final` AS `stock_final`, `u`.`unidad_medida` AS `unidad_medida`, `m`.`precio` AS `precio`, `m`.`total` AS `total` FROM (`material` `m` join `unidad_medida` `u` on(`u`.`id` = `m`.`idunidad`)) WHERE `m`.`estado` = 11  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vista_material_ticket`
+--
+DROP TABLE IF EXISTS `vista_material_ticket`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vista_material_ticket`  AS SELECT `m`.`idMaterial` AS `idMaterial`, `m`.`material` AS `material`, `m`.`stock_final` AS `stock_final`, `u`.`unidad_medida` AS `unidad_medida`, `m`.`precio` AS `precio` FROM (`material` `m` join `unidad_medida` `u` on(`u`.`id` = `m`.`idunidad`)) WHERE `m`.`estado` = 11  ;
 
 -- --------------------------------------------------------
 
@@ -607,7 +646,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `detalle_ticket`
 --
 ALTER TABLE `detalle_ticket`
-  MODIFY `iddt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `iddt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `maquinaria`
@@ -643,7 +682,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad_medida`
@@ -655,7 +694,7 @@ ALTER TABLE `unidad_medida`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

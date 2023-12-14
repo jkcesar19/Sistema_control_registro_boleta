@@ -20,7 +20,8 @@ public class MaterialBo {
 
             columnas.add("ID");
             columnas.add("Material");
-            columnas.add("Cantidad");
+            columnas.add("Stock I");
+            columnas.add("Stock F");
             columnas.add("Unidad");
             columnas.add("Precio");
             columnas.add("Total");
@@ -96,6 +97,7 @@ public class MaterialBo {
             }
         }
     }
+
     public static Material validarMaterial(int id) throws Exception {
         Connection con = null;
         Material material = null;
@@ -114,5 +116,51 @@ public class MaterialBo {
             }
         }
         return material;
+    }
+
+    public static boolean stockMaterial(Material objMaterial) throws Exception {
+        Connection con = null;
+        try {
+            con = Conexion.getConexion();
+            con.setAutoCommit(false);
+            MaterialDao materialDao = new MaterialImplDao(con);
+            materialDao.actualizar_stock(objMaterial);
+            con.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            con.rollback();
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public static DefaultTableModel ListaTable_ticket() throws Exception {
+        DefaultTableModel materialTableModel = null;
+        Connection con = Conexion.getConexion();
+        try {
+            MaterialDao materialDao = new MaterialImplDao(con);
+            Vector datoMaterial = materialDao.Lista_material_ticket();
+            Vector columnas = new Vector();
+
+            columnas.add("ID");
+            columnas.add("Material");
+            columnas.add("Stock");
+            columnas.add("Unidad");
+            columnas.add("Precio");
+
+            materialTableModel = new DefaultTableModel(datoMaterial, columnas);
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return materialTableModel;
     }
 }

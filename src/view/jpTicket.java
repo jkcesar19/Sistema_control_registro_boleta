@@ -9,6 +9,8 @@ import business.TicketBo;
 import db.Conexion;
 import db.TextPrompt;
 import entity.Detalle_Ticket;
+import entity.Maquina;
+import entity.Material;
 import entity.Ticket;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -34,6 +36,8 @@ public class jpTicket extends javax.swing.JPanel {
     private DefaultTableModel MaterialTableModel;
     private DefaultComboBoxModel Persona;
     private DefaultComboBoxModel Cliente;
+    Material obj = new Material();
+    Maquina objM = new Maquina();
     DefaultTableModel modelo2 = new DefaultTableModel();
     Ticket objTicket = new Ticket();
     Detalle_Ticket objDetalle = new Detalle_Ticket();
@@ -88,6 +92,7 @@ public class jpTicket extends javax.swing.JPanel {
         MaterialTable = new javax.swing.JTable();
         btnListaM = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        CantAgregar = new javax.swing.JSpinner();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         MaquinaTable = new javax.swing.JTable();
@@ -264,6 +269,8 @@ public class jpTicket extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(CantAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnListaM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -273,7 +280,9 @@ public class jpTicket extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnListaM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnListaM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CantAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -683,17 +692,53 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListaMMouseExited
 
     private void btnListaMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaMMousePressed
-        if (!" ".equals(descri)) {
+        if (id != 0) {
             try {
+                int cant = Integer.parseInt(CantAgregar.getValue().toString());
+                if (cant != 0) {
+                    Material material = MaterialBo.validarMaterial(id);
+                    int stc = Integer.parseInt(material.getCantidad());
+                    if (stc >= cant) {
+                        int st = (stc - cant);
 
-                cargar_ragistro_tiket();
+                        obj.setIdMaterial(id);
+                        obj.setCantidad("" + st);
+                        canti = cant;
+                        if (st == 0) {
+                            obj.setEstado(0);
+                        } else {
+                            obj.setEstado(1);
+                        }
+                        double tot = (precio * cant);
+                        total = tot;
+                        System.out.println("" + tot);
+                        cargar_ragistro_tiket();
+                        MaterialBo.stockMaterial(obj);
+                        CantAgregar.setValue(0);
+                        loadTableMateria();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "la cantidad es mayor al stock",
+                                "Material", JOptionPane.WARNING_MESSAGE);
+                    }
+
+                } else {
+                    double tot = (precio * canti);
+                    total = tot;
+                    obj.setEstado(0);
+                    obj.setIdMaterial(id);
+                    obj.setCantidad("0");
+                    MaterialBo.stockMaterial(obj);
+                    cargar_ragistro_tiket();
+                    loadTableMateria();
+                }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione el usuario",
-                    "TRABAJADOR", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione el Material",
+                    "Material", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnListaMMousePressed
 
@@ -707,17 +752,21 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarMaMouseExited
 
     private void btnListarMaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMaMousePressed
-        if (!" ".equals(descri)) {
+        if (id != 0) {
             try {
 
+                
+                objM.setIdMaquinaria(id);
+                MaquinaBo.eliminarMaquina(objM);
                 cargar_ragistro_tiket();
+                loadTableMaquina();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione el usuario",
-                    "TRABAJADOR", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione la Maquinaria",
+                    "MAQUINARIA", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnListarMaMousePressed
 
@@ -763,10 +812,10 @@ public class jpTicket extends javax.swing.JPanel {
     private void MaterialTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaterialTableMouseClicked
         try {
             int index = MaterialTable.getSelectedRow();
+            id = Integer.parseInt(MaterialTable.getValueAt(index, 0).toString());
             descri = MaterialTable.getValueAt(index, 1).toString();
             canti = Integer.parseInt(MaterialTable.getValueAt(index, 2).toString());
             precio = Double.parseDouble(MaterialTable.getValueAt(index, 4).toString());
-            total = Double.parseDouble(MaterialTable.getValueAt(index, 5).toString());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_MaterialTableMouseClicked
@@ -774,6 +823,7 @@ public class jpTicket extends javax.swing.JPanel {
     private void MaquinaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaquinaTableMouseClicked
         try {
             int index = MaquinaTable.getSelectedRow();
+            id = Integer.parseInt(MaquinaTable.getValueAt(index, 0).toString());
             descri = MaquinaTable.getValueAt(index, 1).toString();
             horas = Integer.parseInt(MaquinaTable.getValueAt(index, 2).toString());
             dias = Integer.parseInt(MaquinaTable.getValueAt(index, 3).toString());
@@ -832,6 +882,7 @@ public class jpTicket extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner CantAgregar;
     private javax.swing.JComboBox<String> ComboCliente;
     private javax.swing.JComboBox<String> ComboPersona;
     private javax.swing.JTable MaquinaTable;
@@ -888,7 +939,7 @@ public class jpTicket extends javax.swing.JPanel {
     private void loadTableMateria() {
         try {
             TableColumn columna;
-            this.MaterialTableModel = MaterialBo.ListaTable();
+            this.MaterialTableModel = MaterialBo.ListaTable_ticket();
             this.MaterialTable.setModel(this.MaterialTableModel);
 //            setAnchoColumnas();
             columna = this.MaterialTable.getColumnModel().getColumn(0);
@@ -989,6 +1040,7 @@ public class jpTicket extends javax.swing.JPanel {
     }
 
     private void limpiar_variables() {
+        id = 0;
         descri = "";
         dias = 0;
         horas = 0;
