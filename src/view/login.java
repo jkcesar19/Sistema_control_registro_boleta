@@ -1,6 +1,5 @@
 package view;
 
-
 import business.UsuarioBo;
 import db.TextPrompt;
 import entity.Usuario;
@@ -9,7 +8,6 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 
 public class login extends javax.swing.JFrame {
 
@@ -20,7 +18,7 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
 //        icono3();
 //        icono2();
         icono1();
@@ -257,8 +255,8 @@ public class login extends javax.swing.JFrame {
     private void label_salirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salirMouseExited
         exitbt.setBackground(Color.white);
         label_salir.setForeground(Color.black);
-        
-     
+
+
     }//GEN-LAST:event_label_salirMouseExited
 
     private void btn_ingresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMouseEntered
@@ -283,10 +281,14 @@ public class login extends javax.swing.JFrame {
                 jDashboard.adm = usuario.getRol();
                 jDashboard.usuaa = usuario.getPersona();
                 jDashboard.usua = usuario.getUsuario();
+                String usu = usuario.getRol();
 
-                
-                
-                
+                if (usu.equals("empleado")) {
+                    jDashboard.est = true;
+                } else {
+                    jDashboard.est = false;
+                }
+
                 //visualizar panel principal
                 new jDashboard().setVisible(true);
                 this.dispose();
@@ -345,7 +347,6 @@ public class login extends javax.swing.JFrame {
 //        label_logo.setIcon(icono);
 //        this.repaint();
 //    }
-
     private void plaseholder() {
         TextPrompt prueba0 = new TextPrompt(" Ingrese el usuario", this.jtex_usua);
         TextPrompt prueba1 = new TextPrompt(" Ingrese la contraseña", this.jtex_pass);

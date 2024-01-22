@@ -1,27 +1,26 @@
 package view.Maquinaria;
 
-
-import business.MaquinaBo;
+import business.MaquinariaBo;
 import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import view.jDashboard;
 
 public class lista_eliminar extends javax.swing.JPanel {
 
     private DefaultTableModel MaquinaTableModel;
     private int index;
     protected static int id = 0;
-    protected static String maqu = " ";
+    protected static String maqu = "";
     protected static String hora;
     protected static String dia;
     protected static double prec;
     protected static double tota;
-    
-
 
     public lista_eliminar() {
         initComponents();
         MaquinaTable.fixTable(jScrollPane2);
+
         loadTablePerson();
     }
 
@@ -103,7 +102,7 @@ public class lista_eliminar extends javax.swing.JPanel {
     private void loadTablePerson() {
         try {
             TableColumn columna;
-            this.MaquinaTableModel = MaquinaBo.ListaTable();
+            this.MaquinaTableModel = MaquinariaBo.ListaTable();
             this.MaquinaTable.setModel(this.MaquinaTableModel);
 //            setAnchoColumnas();
             columna = this.MaquinaTable.getColumnModel().getColumn(0);
@@ -115,16 +114,15 @@ public class lista_eliminar extends javax.swing.JPanel {
     private void cargar_datos_actualizar_eliminar(MouseEvent evt) {
         try {
             index = this.MaquinaTable.getSelectedRow();
-            id = Integer.parseInt(this.MaquinaTable.getValueAt(index, 0).toString());
-            maqu = this.MaquinaTable.getValueAt(index, 1).toString();
-            hora = this.MaquinaTable.getValueAt(index, 2).toString();
-            dia = this.MaquinaTable.getValueAt(index, 3).toString();
-            prec = Double.parseDouble(this.MaquinaTable.getValueAt(index, 4).toString());
-            tota = Double.parseDouble(this.MaquinaTable.getValueAt(index, 5).toString());
-            
-            
+            maqu = this.MaquinaTable.getValueAt(index, 0).toString();
+            hora = this.MaquinaTable.getValueAt(index, 1).toString();
+            dia = this.MaquinaTable.getValueAt(index, 2).toString();
+            prec = Double.parseDouble(this.MaquinaTable.getValueAt(index, 3).toString());
+            tota = Double.parseDouble(this.MaquinaTable.getValueAt(index, 4).toString());
+
         } catch (Exception e) {
 
         }
     }
+
 }

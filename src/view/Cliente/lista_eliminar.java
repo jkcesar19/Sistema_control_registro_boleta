@@ -11,7 +11,7 @@ public class lista_eliminar extends javax.swing.JPanel {
 
     private DefaultTableModel UsuarioTableModel;
     private int index;
-    protected static int id = 0;
+   
     protected static String usu = " ";
     protected static String ruc;
     protected static String dir;
@@ -115,11 +115,11 @@ public class lista_eliminar extends javax.swing.JPanel {
     private void cargar_datos_actualizar_eliminar(MouseEvent evt) {
         try {
             index = this.UsuarioTable.getSelectedRow();
-            id = Integer.parseInt(this.UsuarioTable.getValueAt(index, 0).toString());
-            usu = this.UsuarioTable.getValueAt(index, 1).toString();
-            ruc = this.UsuarioTable.getValueAt(index, 2).toString();
-            dir = this.UsuarioTable.getValueAt(index, 3).toString();
-            tel = this.UsuarioTable.getValueAt(index, 4).toString();   
+
+            usu = this.UsuarioTable.getValueAt(index, 0).toString();
+            ruc = this.UsuarioTable.getValueAt(index, 1).toString();
+            dir = this.UsuarioTable.getValueAt(index, 2).toString();
+            tel = this.UsuarioTable.getValueAt(index, 3).toString();   
         } catch (Exception e) {
 
         }

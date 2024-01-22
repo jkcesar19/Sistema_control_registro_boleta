@@ -1,6 +1,5 @@
 package view.Usuario;
 
-
 import business.PersonBo;
 import business.RolBo;
 import business.UsuarioBo;
@@ -9,6 +8,8 @@ import entity.Usuario;
 import java.awt.BorderLayout;
 
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import static view.Usuario.VistaUsuario.PanelVistaUsuario;
@@ -112,20 +113,24 @@ public class registro_actualiza extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
-        switch (VistaUsuario.op) {
-            case 'N':
-                if (this.txtContrasena.getText().equals("") || this.txtUsuario.getText().equals("")) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos \n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    this.txtUsuario.requestFocus();
-                } else {
-                    this.registrar();
+        try {
+            switch (VistaUsuario.op) {
+                case 'N':
+                    if (this.txtContrasena.getText().equals("") || this.txtUsuario.getText().equals("")) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos \n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        this.txtUsuario.requestFocus();
+                    } else {
+                        this.registrar();
+                    }
+                    break;
+                case 'M': {
+                    this.modificar();
                 }
-                break;
-            case 'M':
-
-                this.modificar();
 
                 break;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(registro_actualiza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAgregarMousePressed
 
@@ -171,20 +176,21 @@ public class registro_actualiza extends javax.swing.JPanel {
         objUsuario.setUsuario(this.txtUsuario.getText());
         objUsuario.setPasswor(this.txtContrasena.getText());
         objUsuario.setRol(this.ComboRol.getSelectedItem().toString());
-     
 
     }
 
     private void limpiarcampos() {
-     
+
         this.txtContrasena.setText("");
         this.txtUsuario.setText("");
         this.ComboPersona.setSelectedIndex(0);
         this.ComboRol.setSelectedIndex(0);
     }
 
-    private void modificar() {
+    private void modificar() throws Exception {
+
         this.cargar_obj();
+        
         try {
             if (UsuarioBo.modificarUsuario(objUsuario)) {
                 JOptionPane.showMessageDialog(null, "Se Registró Correctamente", "MENSAJE --> Usuario", JOptionPane.INFORMATION_MESSAGE);
@@ -203,9 +209,12 @@ public class registro_actualiza extends javax.swing.JPanel {
 
     private void cargar_campos(boolean estado) throws Exception {
         if (VistaUsuario.estado == true) {
+            Usuario usuario = UsuarioBo.validarUsuarioId(lista_eliminar.per, lista_eliminar.usu);
+            int id = usuario.getId();
+            objUsuario.setId(id);
             this.ComboPersona.setSelectedItem(lista_eliminar.per);
             this.txtUsuario.setText(lista_eliminar.usu);
-            this.txtContrasena.setText(lista_eliminar.con);
+            this.txtContrasena.setText(usuario.getPasswor());
             this.ComboRol.setSelectedItem(lista_eliminar.rol);
         }
 

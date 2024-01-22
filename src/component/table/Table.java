@@ -81,26 +81,26 @@ public class Table extends JTable {
 //        }
     }
 
-    @Override
-    protected void paintComponent(Graphics grphcs) {
-        super.paintComponent(grphcs);
-        Graphics2D g2 = (Graphics2D) grphcs;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int space = 12;
-        int margin = space / 2;
-        for (int i = 0; i < getRowCount(); i++) {
-            int row = i;
-            Rectangle r = getCellRect(row, 0, true);
-            if (isRowSelected(i)) {
-                g2.setColor(new Color(40, 116, 166));
-                g2.drawRect(margin, r.getLocation().y + margin, getWidth() - margin * 2, rowHeight - space);
-            }
-            g2.drawImage(imageShadow, 0, r.getLocation().y, null);
-            g2.setColor(new Color(40, 116, 166));
-            g2.fillRect(margin, r.getLocation().y + margin, 3, rowHeight - space);
-        }
-        g2.dispose();
-    }
+//    @Override
+//    protected void paintComponent(Graphics grphcs) {
+//        super.paintComponent(grphcs);
+//        Graphics2D g2 = (Graphics2D) grphcs;
+//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        int space = 12;
+//        int margin = space / 2;
+//        for (int i = 0; i < getRowCount(); i++) {
+//            int row = i;
+//            Rectangle r = getCellRect(row, 0, true);
+//            if (isRowSelected(i)) {
+//                g2.setColor(new Color(40, 116, 166));
+//                g2.drawRect(margin, r.getLocation().y + margin, getWidth() - margin * 2, rowHeight - space);
+//            }
+//            g2.drawImage(imageShadow, 0, r.getLocation().y, null);
+//            g2.setColor(new Color(40, 116, 166));
+//            g2.fillRect(margin, r.getLocation().y + margin, 3, rowHeight - space);
+//        }
+//        g2.dispose();
+//    }
 
     public void fixTable(JScrollPane scroll) {
         scroll.setBorder(null);

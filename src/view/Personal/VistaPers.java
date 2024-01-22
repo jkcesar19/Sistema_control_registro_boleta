@@ -2,16 +2,18 @@ package view.Personal;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
+import view.jDashboard;
 
 public class VistaPers extends javax.swing.JPanel {
 
     public static char op;
     protected static boolean estado = false;
-   
 
     public VistaPers() {
         initComponents();
+        visible_boton(jDashboard.est);
         cargar_tabla();
     }
 
@@ -27,7 +29,7 @@ public class VistaPers extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        btnEliminar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -68,6 +70,12 @@ public class VistaPers extends javax.swing.JPanel {
 
         btnAdd.setBackground(new java.awt.Color(21, 67, 96));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnAddMousePressed(evt);
             }
@@ -76,7 +84,7 @@ public class VistaPers extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
-        jLabel4.setText("Add");
+        jLabel4.setText("Agregar");
 
         javax.swing.GroupLayout btnAddLayout = new javax.swing.GroupLayout(btnAdd);
         btnAdd.setLayout(btnAddLayout);
@@ -100,6 +108,12 @@ public class VistaPers extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(21, 67, 96));
         jPanel6.setPreferredSize(new java.awt.Dimension(122, 32));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel6MouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel6MousePressed(evt);
             }
@@ -109,7 +123,7 @@ public class VistaPers extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/view.png"))); // NOI18N
-        jLabel1.setText("List");
+        jLabel1.setText("Listar");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -117,8 +131,8 @@ public class VistaPers extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,36 +144,50 @@ public class VistaPers extends javax.swing.JPanel {
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, 40));
 
-        jPanel7.setBackground(new java.awt.Color(21, 67, 96));
-        jPanel7.setPreferredSize(new java.awt.Dimension(122, 32));
+        btnEliminar.setBackground(new java.awt.Color(21, 67, 96));
+        btnEliminar.setPreferredSize(new java.awt.Dimension(122, 32));
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
-        jLabel2.setText("Delete");
+        jLabel2.setText("Eliminar");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout btnEliminarLayout = new javax.swing.GroupLayout(btnEliminar);
+        btnEliminar.setLayout(btnEliminarLayout);
+        btnEliminarLayout.setHorizontalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnEliminarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        btnEliminarLayout.setVerticalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEliminarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, 40));
+        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, 40));
 
         jPanel8.setBackground(new java.awt.Color(21, 67, 96));
         jPanel8.setPreferredSize(new java.awt.Dimension(122, 32));
         jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel8MouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel8MousePressed(evt);
             }
@@ -168,7 +196,7 @@ public class VistaPers extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        jLabel3.setText("Update");
+        jLabel3.setText("Actualizar");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -177,7 +205,7 @@ public class VistaPers extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,10 +274,47 @@ public class VistaPers extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jPanel8MousePressed
 
+    private void btnAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseEntered
+        this.btnAdd.setBackground(new Color(40, 116, 166));
+        this.btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnAddMouseEntered
+
+    private void btnAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseExited
+        this.btnAdd.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnAddMouseExited
+
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+        this.jPanel6.setBackground(new Color(40, 116, 166));
+        this.jPanel6.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jPanel6MouseEntered
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        this.jPanel6.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_jPanel6MouseExited
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        this.btnEliminar.setBackground(new Color(40, 116, 166));
+        this.btnEliminar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        this.btnEliminar.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnEliminarMouseExited
+
+    private void jPanel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseEntered
+        this.jPanel8.setBackground(new Color(40, 116, 166));
+        this.jPanel8.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jPanel8MouseEntered
+
+    private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
+        this.jPanel8.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_jPanel8MouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected static javax.swing.JPanel PanelVistaPer;
     private javax.swing.JPanel btnAdd;
+    private javax.swing.JPanel btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,7 +323,6 @@ public class VistaPers extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
 
@@ -283,5 +347,12 @@ public class VistaPers extends javax.swing.JPanel {
         PanelVistaPer.add(p1, BorderLayout.CENTER);
         PanelVistaPer.revalidate();
         PanelVistaPer.repaint();
+    }
+    private void visible_boton(boolean est) {
+        if (est == true) {
+            this.btnEliminar.setVisible(false);
+           
+            
+        }
     }
 }

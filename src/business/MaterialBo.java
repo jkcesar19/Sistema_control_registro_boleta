@@ -18,7 +18,7 @@ public class MaterialBo {
             Vector datoMaterial = materialDao.Lista();
             Vector columnas = new Vector();
 
-            columnas.add("ID");
+          
             columnas.add("Material");
             columnas.add("Stock I");
             columnas.add("Stock F");
@@ -146,7 +146,6 @@ public class MaterialBo {
             Vector datoMaterial = materialDao.Lista_material_ticket();
             Vector columnas = new Vector();
 
-            columnas.add("ID");
             columnas.add("Material");
             columnas.add("Stock");
             columnas.add("Unidad");
@@ -162,5 +161,28 @@ public class MaterialBo {
             }
         }
         return materialTableModel;
+    }
+
+    public static Material validarMaterialId(String mate) throws Exception {
+          Connection con = null;
+        Material material = null;
+        try {
+            con = Conexion.getConexion();
+            MaterialDao materialDao = new MaterialImplDao(con);
+            material = materialDao.validarMaterialId(mate);
+            if (material == null) {
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return material;
+    }
+
+    public static Material validarQuinaId(String descri) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

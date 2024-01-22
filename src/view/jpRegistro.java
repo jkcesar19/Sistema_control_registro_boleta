@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -13,11 +14,8 @@ import view.Personal.VistaPers;
 
 public class jpRegistro extends javax.swing.JPanel {
 
-
-
     public jpRegistro() {
         initComponents();
-
 
     }
 
@@ -41,6 +39,12 @@ public class jpRegistro extends javax.swing.JPanel {
 
         btnMaterial.setBackground(new java.awt.Color(21, 67, 96));
         btnMaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMaterialMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMaterialMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnMaterialMousePressed(evt);
             }
@@ -55,6 +59,12 @@ public class jpRegistro extends javax.swing.JPanel {
         btnEquipo.setBackground(new java.awt.Color(21, 67, 96));
         btnEquipo.setPreferredSize(new java.awt.Dimension(129, 45));
         btnEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEquipoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEquipoMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnEquipoMousePressed(evt);
             }
@@ -68,6 +78,12 @@ public class jpRegistro extends javax.swing.JPanel {
 
         btnPersonal.setBackground(new java.awt.Color(21, 67, 96));
         btnPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPersonalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPersonalMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnPersonalMousePressed(evt);
             }
@@ -97,6 +113,12 @@ public class jpRegistro extends javax.swing.JPanel {
 
         btnOtros.setBackground(new java.awt.Color(21, 67, 96));
         btnOtros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnOtrosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnOtrosMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnOtrosMousePressed(evt);
             }
@@ -236,6 +258,42 @@ public class jpRegistro extends javax.swing.JPanel {
         panelSegundario.repaint();
     }//GEN-LAST:event_btnOtrosMousePressed
 
+    private void btnPersonalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonalMouseEntered
+        this.btnPersonal.setBackground(new Color(40, 116, 166));
+        this.btnPersonal.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnPersonalMouseEntered
+
+    private void btnPersonalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonalMouseExited
+        this.btnPersonal.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnPersonalMouseExited
+
+    private void btnMaterialMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaterialMouseEntered
+        this.btnMaterial.setBackground(new Color(40, 116, 166));
+        this.btnMaterial.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnMaterialMouseEntered
+
+    private void btnMaterialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMaterialMouseExited
+        this.btnMaterial.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnMaterialMouseExited
+
+    private void btnEquipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEquipoMouseEntered
+        this.btnEquipo.setBackground(new Color(40, 116, 166));
+        this.btnEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnEquipoMouseEntered
+
+    private void btnEquipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEquipoMouseExited
+        this.btnEquipo.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnEquipoMouseExited
+
+    private void btnOtrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOtrosMouseEntered
+        this.btnOtros.setBackground(new Color(40, 116, 166));
+        this.btnOtros.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnOtrosMouseEntered
+
+    private void btnOtrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOtrosMouseExited
+        this.btnOtros.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnOtrosMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnEquipo;
@@ -249,7 +307,6 @@ public class jpRegistro extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelSegundario;
     // End of variables declaration//GEN-END:variables
- 
 
     class FondoPanel extends JPanel {
 
@@ -257,7 +314,7 @@ public class jpRegistro extends javax.swing.JPanel {
 
         public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/img/fon_tra.jpg")).getImage();
-            g.drawImage(imagen,0,0,getWidth(),getHeight(), this);
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
 

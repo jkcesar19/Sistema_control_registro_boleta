@@ -18,10 +18,10 @@ public class UsuarioBo {
             Vector datoUsuario = usuarioDao.Lista();
             Vector columnas = new Vector();
 
-            columnas.add("ID");
+           
             columnas.add("Nombre");
             columnas.add("Usuario");
-            columnas.add("Contraseña");
+//            columnas.add("Contraseña");
             columnas.add("Rol");
 
             materialTableModel = new DefaultTableModel(datoUsuario, columnas);
@@ -103,6 +103,26 @@ public class UsuarioBo {
             con = Conexion.getConexion();
             UsuarioDao usuarioDao = new UsuarioImplDao(con);
             maquina = usuarioDao.validarUsuario(usa, clave);
+            if (maquina == null) {
+                throw new Exception("Usuario y/o Clave incorectos");
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return maquina;
+    }
+
+    public static Usuario validarUsuarioId(String per,String user) throws Exception {
+    Connection con = null;
+        Usuario maquina = null;
+        try {
+            con = Conexion.getConexion();
+            UsuarioDao usuarioDao = new UsuarioImplDao(con);
+            maquina = usuarioDao.validarUsuarioId(per,user);
             if (maquina == null) {
                 throw new Exception("Usuario y/o Clave incorectos");
             }

@@ -35,7 +35,7 @@ public class ClienteBo {
             ClienteDao personDao = new ClienteImplDao(con);
             Vector datoPerson = personDao.Lista();
             Vector columnas = new Vector();
-            columnas.add("ID");
+            
             columnas.add("R. social");
             columnas.add("RUC");
             columnas.add("Dirección");
@@ -111,5 +111,25 @@ public class ClienteBo {
                 con.close();
             }
         }
+    }
+    
+    public static Cliente validarClienteId(String cliente, String ruc) throws Exception {
+        Connection con = null;
+        Cliente cli = null;
+        try {
+            con = Conexion.getConexion();
+            ClienteDao personDao = new ClienteImplDao(con);
+            cli = personDao.validarCliente(cliente,ruc);
+            if (cli == null) {
+
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return cli;
     }
 }

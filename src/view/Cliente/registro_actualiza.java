@@ -18,7 +18,7 @@ public class registro_actualiza extends javax.swing.JPanel {
     public registro_actualiza() throws Exception {
         initComponents();
         plaseholder();
-        
+
         cargar_campos(VistaCliente.estado);
 
     }
@@ -100,12 +100,15 @@ public class registro_actualiza extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMousePressed
-        switch (VistaCliente.op) {
+        switch (VistaCliente.op)
+        {
             case 'N':
-                if (this.txtTelefono.getText().equals("") || this.txtRuc.getText().equals("")) {
+                if (this.txtTelefono.getText().equals("") || this.txtRuc.getText().equals(""))
+                {
                     javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos \n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     this.txtRazonSocial.requestFocus();
-                } else {
+                } else
+                {
                     this.registrar();
                 }
                 break;
@@ -138,19 +141,23 @@ public class registro_actualiza extends javax.swing.JPanel {
 
     private void registrar() {
         this.cargar_obj();
-        try {
-            if (ClienteBo.grabarPerson(objUsuario)) {
+        try
+        {
+            if (ClienteBo.grabarPerson(objUsuario))
+            {
                 JOptionPane.showMessageDialog(null, "Se Registró Correctamente", "MENSAJE --> Usuario", JOptionPane.INFORMATION_MESSAGE);
                 this.cargar_tabla();
                 this.limpiarcampos();
 
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(this, "No se pudo Registrar", "MENSAJE --> Usuario", JOptionPane.ERROR_MESSAGE);
                 this.limpiarcampos();
 
             }
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> Usuario", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -173,24 +180,32 @@ public class registro_actualiza extends javax.swing.JPanel {
 
     private void modificar() {
         this.cargar_obj();
-        try {
-            if (ClienteBo.modificarPerson(objUsuario)) {
+        try
+        {
+            if (ClienteBo.modificarPerson(objUsuario))
+            {
                 JOptionPane.showMessageDialog(null, "Se Registró Correctamente", "MENSAJE --> Usuario", JOptionPane.INFORMATION_MESSAGE);
                 this.cargar_tabla();
                 this.limpiarcampos();
 
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(this, "No se pudo Registrar", "MENSAJE --> Usuario", JOptionPane.ERROR_MESSAGE);
                 this.limpiarcampos();
             }
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> Usuario", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void cargar_campos(boolean estado) throws Exception {
-        if (VistaCliente.estado == true) {
+        if (VistaCliente.estado == true)
+        {
+            Cliente usuario = ClienteBo.validarClienteId(lista_eliminar.usu, lista_eliminar.ruc);
+            int id = usuario.getIdc();
+            objUsuario.setIdc(id);
             this.txtRazonSocial.setText(lista_eliminar.usu);
             this.txtRuc.setText(lista_eliminar.ruc);
             this.txtTelefono.setText(lista_eliminar.tel);
@@ -209,6 +224,5 @@ public class registro_actualiza extends javax.swing.JPanel {
         PanelVistaCliente.revalidate();
         PanelVistaCliente.repaint();
     }
-
 
 }

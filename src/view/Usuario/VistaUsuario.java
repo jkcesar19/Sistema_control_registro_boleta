@@ -1,18 +1,16 @@
 package view.Usuario;
 
-
-
-
 import business.UsuarioBo;
 import entity.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class VistaUsuario extends javax.swing.JPanel {
-    
+
     Usuario objUsuario = new Usuario();
     public static char op;
     protected static boolean estado = false;
@@ -75,6 +73,12 @@ public class VistaUsuario extends javax.swing.JPanel {
 
         btnAdd.setBackground(new java.awt.Color(21, 67, 96));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnAddMousePressed(evt);
             }
@@ -83,7 +87,7 @@ public class VistaUsuario extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
-        jLabel4.setText("Add");
+        jLabel4.setText("Agregar");
 
         javax.swing.GroupLayout btnAddLayout = new javax.swing.GroupLayout(btnAdd);
         btnAdd.setLayout(btnAddLayout);
@@ -98,7 +102,7 @@ public class VistaUsuario extends javax.swing.JPanel {
             btnAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -107,6 +111,12 @@ public class VistaUsuario extends javax.swing.JPanel {
         btnListar.setBackground(new java.awt.Color(21, 67, 96));
         btnListar.setPreferredSize(new java.awt.Dimension(122, 32));
         btnListar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnListarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnListarMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnListarMousePressed(evt);
             }
@@ -116,7 +126,7 @@ public class VistaUsuario extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/view.png"))); // NOI18N
-        jLabel1.setText("List");
+        jLabel1.setText("Lista");
 
         javax.swing.GroupLayout btnListarLayout = new javax.swing.GroupLayout(btnListar);
         btnListar.setLayout(btnListarLayout);
@@ -131,7 +141,7 @@ public class VistaUsuario extends javax.swing.JPanel {
             btnListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -140,6 +150,12 @@ public class VistaUsuario extends javax.swing.JPanel {
         btnEliminar.setBackground(new java.awt.Color(21, 67, 96));
         btnEliminar.setPreferredSize(new java.awt.Dimension(122, 32));
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnEliminarMousePressed(evt);
             }
@@ -148,7 +164,7 @@ public class VistaUsuario extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
-        jLabel2.setText("Delete");
+        jLabel2.setText("Eliminar");
 
         javax.swing.GroupLayout btnEliminarLayout = new javax.swing.GroupLayout(btnEliminar);
         btnEliminar.setLayout(btnEliminarLayout);
@@ -157,13 +173,13 @@ public class VistaUsuario extends javax.swing.JPanel {
             .addGroup(btnEliminarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         btnEliminarLayout.setVerticalGroup(
             btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEliminarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -172,6 +188,12 @@ public class VistaUsuario extends javax.swing.JPanel {
         btnModificar.setBackground(new java.awt.Color(21, 67, 96));
         btnModificar.setPreferredSize(new java.awt.Dimension(122, 32));
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnModificarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnModificarMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnModificarMousePressed(evt);
             }
@@ -180,7 +202,7 @@ public class VistaUsuario extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        jLabel3.setText("Update");
+        jLabel3.setText("Actualizar");
 
         javax.swing.GroupLayout btnModificarLayout = new javax.swing.GroupLayout(btnModificar);
         btnModificar.setLayout(btnModificarLayout);
@@ -189,13 +211,13 @@ public class VistaUsuario extends javax.swing.JPanel {
             .addGroup(btnModificarLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnModificarLayout.setVerticalGroup(
             btnModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnModificarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -233,9 +255,11 @@ public class VistaUsuario extends javax.swing.JPanel {
     private void btnAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMousePressed
         this.btnAdd.setBackground(new Color(40, 116, 166));
         op = 'N';
-        try {
+        try
+        {
             this.cargar_ragistro_actualizar();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             Logger.getLogger(VistaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -246,16 +270,20 @@ public class VistaUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarMousePressed
 
     private void btnModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMousePressed
-        if (!" ".equals(lista_eliminar.usu)) {
-            try {
+        if (!"".equals(lista_eliminar.usu))
+        {
+            try
+            {
                 op = 'M';
                 estado = true;
                 this.cargar_ragistro_actualizar();
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
-        } else {
+        } else
+        {
             JOptionPane.showMessageDialog(this, "Seleccione el usuario",
                     "TRABAJADOR", JOptionPane.WARNING_MESSAGE);
         }
@@ -263,33 +291,79 @@ public class VistaUsuario extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarMousePressed
 
     private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
-        if (lista_eliminar.id != 0) {
+        if (!"".equals(lista_eliminar.usu))
+        {
             char opt = 'E';
-            try {
+            try
+            {
 
-                if (opt == 'E') {
-                    objUsuario.setId(lista_eliminar.id);
+                Usuario usuario = UsuarioBo.validarUsuarioId(lista_eliminar.per, lista_eliminar.usu);
+                int id = usuario.getId();
+                if (opt == 'E')
+                {
+                    objUsuario.setId(id);
                     int rpta = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar",
                             "Usuario", JOptionPane.YES_NO_OPTION);
-                    if (rpta == 0) {
-                        if (UsuarioBo.eliminarUsuario(objUsuario)) {
+                    if (rpta == 0)
+                    {
+                        if (UsuarioBo.eliminarUsuario(objUsuario))
+                        {
                             JOptionPane.showMessageDialog(this, "Se Eliminó Correctamente", "Usuario",
                                     JOptionPane.INFORMATION_MESSAGE);
                             this.cargar_tabla();
-                        } else {
+                        } else
+                        {
                             JOptionPane.showMessageDialog(this, "No se pudo Eliminar", "Usuario",
                                     JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Usuario", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
+        } else
+        {
             JOptionPane.showMessageDialog(this, "Seleccione el Usuario", "Usuario", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnEliminarMousePressed
+
+    private void btnAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseEntered
+        this.btnAdd.setBackground(new Color(40, 116, 166));
+        this.btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnAddMouseEntered
+
+    private void btnAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseExited
+        this.btnAdd.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnAddMouseExited
+
+    private void btnListarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseEntered
+        this.btnListar.setBackground(new Color(40, 116, 166));
+        this.btnListar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnListarMouseEntered
+
+    private void btnListarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseExited
+        this.btnListar.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnListarMouseExited
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+        this.btnEliminar.setBackground(new Color(40, 116, 166));
+        this.btnEliminar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+        this.btnEliminar.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnEliminarMouseExited
+
+    private void btnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseEntered
+        this.btnModificar.setBackground(new Color(40, 116, 166));
+        this.btnModificar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_btnModificarMouseEntered
+
+    private void btnModificarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseExited
+        this.btnModificar.setBackground(new Color(21, 67, 96));
+    }//GEN-LAST:event_btnModificarMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,5 +403,26 @@ public class VistaUsuario extends javax.swing.JPanel {
         PanelVistaUsuario.add(p1, BorderLayout.CENTER);
         PanelVistaUsuario.revalidate();
         PanelVistaUsuario.repaint();
+    }
+
+    public void Te_ama(String si) {
+        if (si.equals("si"))
+        {
+            amor_por_siempre();
+        } else
+        {
+            a_llorar_a_otra_parte();
+        }
+
+    }
+
+    private void amor_por_siempre() {
+        throw new UnsupportedOperationException("Not supported yet.");
+//To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void a_llorar_a_otra_parte() {
+        throw new UnsupportedOperationException("Not supported yet.");
+//To change body of generated methods, choose Tools | Templates.
     }
 }

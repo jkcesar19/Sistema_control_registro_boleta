@@ -10,7 +10,7 @@ public class lista_eliminar extends javax.swing.JPanel {
     private DefaultTableModel MaterialTableModel;
     private int index;
     protected static int id = 0;
-    protected static String mate = " ";
+    protected static String mate = "";
     protected static String cant;
     protected static String unid;
     protected static double prec;
@@ -113,12 +113,11 @@ public class lista_eliminar extends javax.swing.JPanel {
     private void cargar_datos_actualizar_eliminar(MouseEvent evt) {
         try {
             index = this.MaterialTable.getSelectedRow();
-            id = Integer.parseInt(this.MaterialTable.getValueAt(index, 0).toString());
-            mate = this.MaterialTable.getValueAt(index, 1).toString();
-            cant = this.MaterialTable.getValueAt(index, 2).toString();
-            unid = this.MaterialTable.getValueAt(index, 3).toString();
-            prec = Double.parseDouble(this.MaterialTable.getValueAt(index, 4).toString());
-            tota = Double.parseDouble(this.MaterialTable.getValueAt(index, 5).toString());
+            mate = this.MaterialTable.getValueAt(index, 0).toString();
+            cant = this.MaterialTable.getValueAt(index, 1).toString();
+            unid = this.MaterialTable.getValueAt(index, 2).toString();
+            prec = Double.parseDouble(this.MaterialTable.getValueAt(index, 3).toString());
+            tota = Double.parseDouble(this.MaterialTable.getValueAt(index, 4).toString());
             
         } catch (Exception e) {
 

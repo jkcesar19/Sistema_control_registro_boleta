@@ -15,6 +15,7 @@ public class jDashboard extends javax.swing.JFrame {
     public static String adm;
     public static String usuaa;
     public static String usua;
+    public static boolean est = false;
 
     int xMouse;
     int yMouse;
@@ -22,9 +23,9 @@ public class jDashboard extends javax.swing.JFrame {
     public jDashboard() {
         initComponents();
         accionar_boton.accion_button(jDashboard.this, Header);
-
+        vita_boton(est);
         this.jlabAdmin.setText(usuaa);
-        this.jlabPerfil.setText(adm +": ");
+        this.jlabPerfil.setText(adm + ": ");
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int dia = now.getDayOfMonth();
@@ -469,5 +470,11 @@ public class jDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jpRegistro;
     private javax.swing.JPanel jpUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void vita_boton(boolean est) {
+        if (est == true) {
+            this.jpUsuario.setVisible(false);
+        }
+    }
 
 }

@@ -25,7 +25,7 @@ public class PersonImplDao implements PersonDao {
     @Override
     public Vector Lista() throws SQLException {
         Vector listaPerson = new Vector();
-        String sql = "SELECT  nombre, num_dni, direccion, telefono, correo, es_civil, hijo, can_hijo, sexo FROM persona";
+        String sql = "SELECT * FROM persona";
         st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {

@@ -2,14 +2,14 @@ package view;
 
 import business.ClienteBo;
 import business.Detalle_TicketBo;
-import business.MaquinaBo;
+import business.MaquinariaBo;
 import business.MaterialBo;
 import business.PersonBo;
 import business.TicketBo;
 import db.Conexion;
 import db.TextPrompt;
 import entity.Detalle_Ticket;
-import entity.Maquina;
+import entity.Maquinaria;
 import entity.Material;
 import entity.Ticket;
 import java.awt.Color;
@@ -37,7 +37,7 @@ public class jpTicket extends javax.swing.JPanel {
     private DefaultComboBoxModel Persona;
     private DefaultComboBoxModel Cliente;
     Material obj = new Material();
-    Maquina objM = new Maquina();
+    Maquinaria objM = new Maquinaria();
     DefaultTableModel modelo2 = new DefaultTableModel();
     Ticket objTicket = new Ticket();
     Detalle_Ticket objDetalle = new Detalle_Ticket();
@@ -49,8 +49,8 @@ public class jpTicket extends javax.swing.JPanel {
     private String trabajador;
 
     private String descri;
-    private int dias;
     private int id;
+    private int dias;
     private int horas;
     private int canti;
 
@@ -124,12 +124,11 @@ public class jpTicket extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("NUEVO TICKET");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 8, 191, 30));
 
         txtNun_tiket.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jPanel2.add(txtNun_tiket, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 147, 40));
+        jPanel2.add(txtNun_tiket, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 147, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 204, 0));
@@ -144,9 +143,9 @@ public class jpTicket extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ComboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ComboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -188,7 +187,7 @@ public class jpTicket extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,15 +210,10 @@ public class jpTicket extends javax.swing.JPanel {
 
         MaterialTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Material", "Cantidad", "Unidad", "Precio", "Total"
+                "Material", "Stock", "Unidad", "Precio"
             }
         ));
         MaterialTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,7 +240,7 @@ public class jpTicket extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
-        jLabel7.setText("Listar");
+        jLabel7.setText("Agregar");
 
         javax.swing.GroupLayout btnListaMLayout = new javax.swing.GroupLayout(btnListaM);
         btnListaM.setLayout(btnListaMLayout);
@@ -290,19 +284,14 @@ public class jpTicket extends javax.swing.JPanel {
 
         MaquinaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Maquina", "Horas", "Dias", "Precio", "Total"
+                "Maquina", "Horas", "Dias", "Precio", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, false
+                true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -333,19 +322,19 @@ public class jpTicket extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
-        jLabel8.setText("Listar");
+        jLabel8.setText("Agregar");
 
         javax.swing.GroupLayout btnListarMaLayout = new javax.swing.GroupLayout(btnListarMa);
         btnListarMa.setLayout(btnListarMaLayout);
         btnListarMaLayout.setHorizontalGroup(
             btnListarMaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnListarMaLayout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnListarMaLayout.createSequentialGroup()
+                .addGap(0, 2, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         btnListarMaLayout.setVerticalGroup(
             btnListarMaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -355,13 +344,11 @@ public class jpTicket extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnListarMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))))
+                        .addComponent(btnListarMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +357,7 @@ public class jpTicket extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnListarMa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         table_detalle_ticket.setModel(new javax.swing.table.DefaultTableModel(
@@ -545,13 +532,13 @@ public class jpTicket extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
-        jLabel5.setText("Listar");
+        jLabel5.setText("Agregar");
 
         javax.swing.GroupLayout btnListarLayout = new javax.swing.GroupLayout(btnListar);
         btnListar.setLayout(btnListarLayout);
         btnListarLayout.setHorizontalGroup(
             btnListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
         );
         btnListarLayout.setVerticalGroup(
             btnListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,28 +555,28 @@ public class jpTicket extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDias, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtDias, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ComboPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4))
         );
 
@@ -603,17 +590,17 @@ public class jpTicket extends javax.swing.JPanel {
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -635,7 +622,7 @@ public class jpTicket extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(8, 8, 8)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -664,19 +651,23 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarMouseExited
 
     private void btnListarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMousePressed
-        if (!" ".equals(txttotal.getText())) {
-            try {
+        if (!"".equals(txttotal.getText()))
+        {
+            try
+            {
                 descri = ComboPersona.getSelectedItem().toString();
                 dias = Integer.parseInt(this.txtDias.getText());
                 precio = Double.parseDouble(this.txtPrecio.getText());
                 total = Double.parseDouble(this.txttotal.getText());
                 cargar_ragistro_tiket();
                 limpiar();
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
-        } else {
+        } else
+        {
             JOptionPane.showMessageDialog(this, "Seleccione el usuario",
                     "TRABAJADOR", JOptionPane.WARNING_MESSAGE);
         }
@@ -692,21 +683,28 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListaMMouseExited
 
     private void btnListaMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaMMousePressed
-        if (id != 0) {
-            try {
+        if (!"".equals(descri))
+        {
+            try
+            {
                 int cant = Integer.parseInt(CantAgregar.getValue().toString());
-                if (cant != 0) {
-                    Material material = MaterialBo.validarMaterial(id);
+                if (cant != 0)
+                {
+                    Material material = MaterialBo.validarMaterialId(descri);
+                    System.out.println("id material2: " + material.getIdMaterial());
                     int stc = Integer.parseInt(material.getCantidad());
-                    if (stc >= cant) {
+                    if (stc >= cant)
+                    {
                         int st = (stc - cant);
 
-                        obj.setIdMaterial(id);
+                        obj.setIdMaterial(material.getIdMaterial());
                         obj.setCantidad("" + st);
                         canti = cant;
-                        if (st == 0) {
+                        if (st == 0)
+                        {
                             obj.setEstado(0);
-                        } else {
+                        } else
+                        {
                             obj.setEstado(1);
                         }
                         double tot = (precio * cant);
@@ -716,27 +714,36 @@ public class jpTicket extends javax.swing.JPanel {
                         MaterialBo.stockMaterial(obj);
                         CantAgregar.setValue(0);
                         loadTableMateria();
-                    } else {
+                    } else
+                    {
                         JOptionPane.showMessageDialog(this, "la cantidad es mayor al stock",
                                 "Material", JOptionPane.WARNING_MESSAGE);
                     }
 
-                } else {
+                } else
+                {
+                    System.out.println("precio: " + precio);
+                    System.out.println("cantidad: " + canti);
                     double tot = (precio * canti);
                     total = tot;
                     obj.setEstado(0);
-                    obj.setIdMaterial(id);
+                    Material material = MaterialBo.validarMaterialId(descri);
+                    int id = material.getIdMaterial();
+                    System.out.println("Id material: " + id);
+                    obj.setIdMaterial(material.getIdMaterial());
                     obj.setCantidad("0");
                     MaterialBo.stockMaterial(obj);
                     cargar_ragistro_tiket();
                     loadTableMateria();
                 }
 
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
-        } else {
+        } else
+        {
             JOptionPane.showMessageDialog(this, "Seleccione el Material",
                     "Material", JOptionPane.WARNING_MESSAGE);
         }
@@ -752,19 +759,22 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarMaMouseExited
 
     private void btnListarMaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMaMousePressed
-        if (id != 0) {
-            try {
-
-                
-                objM.setIdMaquinaria(id);
-                MaquinaBo.eliminarMaquina(objM);
+        if (!"".equals(descri))
+        {
+            try
+            {
+                Maquinaria maquina = MaquinariaBo.validariMaquinaId(descri);
+                objM.setIdMaquinaria(maquina.getIdMaquinaria());
+                MaquinariaBo.eliminarMaquina(objM);
                 cargar_ragistro_tiket();
                 loadTableMaquina();
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 JOptionPane.showMessageDialog(null, "Error " + e);
             }
 
-        } else {
+        } else
+        {
             JOptionPane.showMessageDialog(this, "Seleccione la Maquinaria",
                     "MAQUINARIA", JOptionPane.WARNING_MESSAGE);
         }
@@ -810,26 +820,28 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnImprimirMousePressed
 
     private void MaterialTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaterialTableMouseClicked
-        try {
+        try
+        {
             int index = MaterialTable.getSelectedRow();
-            id = Integer.parseInt(MaterialTable.getValueAt(index, 0).toString());
-            descri = MaterialTable.getValueAt(index, 1).toString();
-            canti = Integer.parseInt(MaterialTable.getValueAt(index, 2).toString());
-            precio = Double.parseDouble(MaterialTable.getValueAt(index, 4).toString());
-        } catch (Exception e) {
+            descri = MaterialTable.getValueAt(index, 0).toString();
+            canti = Integer.parseInt(MaterialTable.getValueAt(index, 1).toString());
+            precio = Double.parseDouble(MaterialTable.getValueAt(index, 3).toString());
+        } catch (Exception e)
+        {
         }
     }//GEN-LAST:event_MaterialTableMouseClicked
 
     private void MaquinaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaquinaTableMouseClicked
-        try {
+        try
+        {
             int index = MaquinaTable.getSelectedRow();
-            id = Integer.parseInt(MaquinaTable.getValueAt(index, 0).toString());
-            descri = MaquinaTable.getValueAt(index, 1).toString();
-            horas = Integer.parseInt(MaquinaTable.getValueAt(index, 2).toString());
-            dias = Integer.parseInt(MaquinaTable.getValueAt(index, 3).toString());
-            precio = Double.parseDouble(MaquinaTable.getValueAt(index, 4).toString());
-            total = Double.parseDouble(MaquinaTable.getValueAt(index, 5).toString());
-        } catch (Exception e) {
+            descri = MaquinaTable.getValueAt(index, 0).toString();
+            horas = Integer.parseInt(MaquinaTable.getValueAt(index, 1).toString());
+            dias = Integer.parseInt(MaquinaTable.getValueAt(index, 2).toString());
+            precio = Double.parseDouble(MaquinaTable.getValueAt(index, 3).toString());
+            total = Double.parseDouble(MaquinaTable.getValueAt(index, 4).toString());
+        } catch (Exception e)
+        {
         }
     }//GEN-LAST:event_MaquinaTableMouseClicked
 
@@ -838,7 +850,8 @@ public class jpTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel9MousePressed
 
     private void jLabel11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MousePressed
-        try {
+        try
+        {
             Connection con = null;
             JasperReport reporteJasper = null;
             String dir = "src\\Reporte\\report1.jasper";
@@ -851,7 +864,8 @@ public class jpTicket extends javax.swing.JPanel {
             JasperViewer view = new JasperViewer(mostrarReporte, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setVisible(true);
-        } catch (Exception JRException) {
+        } catch (Exception JRException)
+        {
             JOptionPane.showMessageDialog(null, "Error al intentar abrir el reporte");
         }
     }//GEN-LAST:event_jLabel11MousePressed
@@ -861,20 +875,25 @@ public class jpTicket extends javax.swing.JPanel {
         int fila;
         int resp;
 
-        try {
+        try
+        {
             fila = table_detalle_ticket.getSelectedRow();
-            if (fila == -1) {
+            if (fila == -1)
+            {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar la fila a eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            } else {
+            } else
+            {
                 resp = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este fila?", "eliminar", JOptionPane.YES_NO_OPTION);
-                if (resp == JOptionPane.YES_NO_OPTION) {
+                if (resp == JOptionPane.YES_NO_OPTION)
+                {
 
                     modelo2 = (DefaultTableModel) table_detalle_ticket.getModel();
                     modelo2.removeRow(fila);
 
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
 
         }
 
@@ -925,48 +944,56 @@ public class jpTicket extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loadTableMaquina() {
-        try {
+        try
+        {
             TableColumn columna;
-            this.MaquinaTableModel = MaquinaBo.ListaTable();
+            this.MaquinaTableModel = MaquinariaBo.ListaTable();
             this.MaquinaTable.setModel(this.MaquinaTableModel);
 //            setAnchoColumnas();
             columna = this.MaquinaTable.getColumnModel().getColumn(0);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
     private void loadTableMateria() {
-        try {
+        try
+        {
             TableColumn columna;
             this.MaterialTableModel = MaterialBo.ListaTable_ticket();
             this.MaterialTable.setModel(this.MaterialTableModel);
 //            setAnchoColumnas();
             columna = this.MaterialTable.getColumnModel().getColumn(0);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
     private void loadComboPersona() {
-        try {
+        try
+        {
             Persona = PersonBo.obtenerPersona();
             ComboPersona.setModel(Persona);
             ComboPersona.setPreferredSize(new Dimension(600, 22));
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage());
             e.printStackTrace();
         }
     }
 
     private void loadComboCliente() {
-        try {
+        try
+        {
             Cliente = ClienteBo.obtenerPersona();
             ComboCliente.setModel(Cliente);
             ComboCliente.setPreferredSize(new Dimension(600, 22));
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage());
             e.printStackTrace();
         }
@@ -974,28 +1001,37 @@ public class jpTicket extends javax.swing.JPanel {
 
     private void numeroTicket() {
 
-        try {
+        try
+        {
             String serie = TicketBo.NumId();
-            if (serie == null) {
+            if (serie == null)
+            {
                 txtNun_tiket.setText("0000001");
-            } else {
+            } else
+            {
                 int increment = Integer.parseInt(serie);
                 increment = increment + 1;
-                if (increment <= 10) {
+                if (increment <= 10)
+                {
                     txtNun_tiket.setText("0000" + increment);
-                } else if (increment >= 10 && increment <= 99) {
+                } else if (increment >= 10 && increment <= 99)
+                {
                     txtNun_tiket.setText("000" + increment);
-                } else if (increment >= 100 && increment <= 999) {
+                } else if (increment >= 100 && increment <= 999)
+                {
                     txtNun_tiket.setText("0" + increment);
-                } else if (increment >= 1000 && increment <= 9999) {
+                } else if (increment >= 1000 && increment <= 9999)
+                {
                     txtNun_tiket.setText("0" + increment);
-                } else if (increment >= 10000 && increment <= 99999) {
+                } else if (increment >= 10000 && increment <= 99999)
+                {
                     txtNun_tiket.setText("0" + increment);
 
                 }
 
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
 
@@ -1004,7 +1040,8 @@ public class jpTicket extends javax.swing.JPanel {
     private void cargar_ragistro_tiket() {
         modelo2 = (DefaultTableModel) table_detalle_ticket.getModel();
         ArrayList lista = new ArrayList();
-        if (descri != null) {
+        if (descri != null)
+        {
             lista.add(descri);
             lista.add(dias);
             lista.add(horas);
@@ -1028,11 +1065,12 @@ public class jpTicket extends javax.swing.JPanel {
 
     private void calculatTotal() {
         double total = 0.0, sbto = 0.0;
-        for (int i = 0; i < table_detalle_ticket.getRowCount(); i++) {
+        for (int i = 0; i < table_detalle_ticket.getRowCount(); i++)
+        {
             total1 = Double.parseDouble(table_detalle_ticket.getValueAt(i, 5).toString());
 
-            sbto = sbto + total1;
-            total = total + total1;
+            sbto = redondear(sbto + total1);
+            total = redondear(total + total1);
         }
         txtsubtotal.setText("" + sbto + "0");
         txtTotal.setText("" + total + "0");
@@ -1049,7 +1087,8 @@ public class jpTicket extends javax.swing.JPanel {
     }
 
     private void registrar() {
-        try {
+        try
+        {
             guardarVenta();
             String idT = TicketBo.NumId();
             id = Integer.parseInt(idT);
@@ -1059,14 +1098,16 @@ public class jpTicket extends javax.swing.JPanel {
             limpiarTodo();
             numeroTicket();
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(this, "Error " + ex);
         }
 
     }
 
     private void guardarVenta() {
-        try {
+        try
+        {
             objTicket.setIdU(jDashboard.usua);
             objTicket.setIdC(ComboCliente.getSelectedItem().toString());
             objTicket.setSerie("F0001");
@@ -1074,21 +1115,26 @@ public class jpTicket extends javax.swing.JPanel {
             objTicket.setSubtotal(Double.parseDouble(txtsubtotal.getText()));
             objTicket.setTotal(Double.parseDouble(txtTotal.getText()));
 
-            if (TicketBo.grabarTicket(objTicket)) {
+            if (TicketBo.grabarTicket(objTicket))
+            {
                 JOptionPane.showMessageDialog(this, "Se Registró Correctamente", "MENSAJE --> Ticket", JOptionPane.INFORMATION_MESSAGE);
 
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(this, "No se pudo Registrar", "MENSAJE --> Ticket", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> VENTA", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void guardarDetalle() {
-        try {
+        try
+        {
 
-            for (int i = 0; i < table_detalle_ticket.getRowCount(); i++) {
+            for (int i = 0; i < table_detalle_ticket.getRowCount(); i++)
+            {
                 objDetalle.setIdticket(id);
                 objDetalle.setDes(table_detalle_ticket.getValueAt(i, 0).toString());
                 objDetalle.setDia(Integer.parseInt(table_detalle_ticket.getValueAt(i, 1).toString()));
@@ -1099,7 +1145,8 @@ public class jpTicket extends javax.swing.JPanel {
 
                 Detalle_TicketBo.grabarTicket(objDetalle);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> DETALLE TICKET", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -1107,7 +1154,8 @@ public class jpTicket extends javax.swing.JPanel {
     private void limpiarTodo() {
         this.txtsubtotal.setText("");
         this.txtTotal.setText("");
-        for (int i = 0; i < modelo2.getRowCount(); i++) {
+        for (int i = 0; i < modelo2.getRowCount(); i++)
+        {
             modelo2.removeRow(i);
             i = i - 1;
         }
@@ -1120,9 +1168,12 @@ public class jpTicket extends javax.swing.JPanel {
     }
 
     private void plaseholder() {
-        TextPrompt prueba0 = new TextPrompt(" 001", this.txtDias);
-        TextPrompt prueba1 = new TextPrompt(" 11,2", this.txtPrecio);
-        TextPrompt prueba2 = new TextPrompt(" 11,2", this.txttotal);
+        TextPrompt prueba0 = new TextPrompt("Dias 001", this.txtDias);
+        TextPrompt prueba1 = new TextPrompt("Precio 11,2", this.txtPrecio);
+        TextPrompt prueba2 = new TextPrompt("Total 11,2", this.txttotal);
     }
 
+    private double redondear(double num) {
+        return Math.rint(num * 100) / 100;
+    }
 }
