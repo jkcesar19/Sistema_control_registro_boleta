@@ -5,6 +5,7 @@ import db.TextPrompt;
 import entity.Usuario;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -71,8 +72,12 @@ public class login extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 80, -1));
 
         jtex_usua.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jtex_usua.setForeground(new java.awt.Color(0, 0, 0));
         jtex_usua.setBorder(null);
+        jtex_usua.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtex_usuaKeyPressed(evt);
+            }
+        });
         jPanel1.add(jtex_usua, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 410, 30));
 
         jSeparator1.setBackground(new java.awt.Color(10, 95, 1));
@@ -87,8 +92,12 @@ public class login extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 128, 0));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 410, 10));
 
-        jtex_pass.setForeground(new java.awt.Color(0, 0, 0));
         jtex_pass.setBorder(null);
+        jtex_pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtex_passKeyPressed(evt);
+            }
+        });
         jPanel1.add(jtex_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 410, 30));
 
         lblSystem.setBackground(new java.awt.Color(255, 255, 255));
@@ -268,35 +277,21 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingresarMouseExited
 
     private void btn_ingresarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ingresarMousePressed
-        if (this.jtex_usua.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Le falta Ingresar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-        } else if (this.jtex_pass.getText().trim().isEmpty()) {
-
-        } else {
-            try {
-                usua = this.jtex_usua.getText().trim();
-                pass = new String(this.jtex_pass.getPassword()).trim();
-                Usuario usuario = UsuarioBo.validarUsuario(usua, pass);
-                jDashboard.adm = usuario.getRol();
-                jDashboard.usuaa = usuario.getPersona();
-                jDashboard.usua = usuario.getUsuario();
-                String usu = usuario.getRol();
-
-                if (usu.equals("empleado")) {
-                    jDashboard.est = true;
-                } else {
-                    jDashboard.est = false;
-                }
-
-                //visualizar panel principal
-                new jDashboard().setVisible(true);
-                this.dispose();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "USUARIO", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+       this.ingresar_sistema();
+        
     }//GEN-LAST:event_btn_ingresarMousePressed
+
+    private void jtex_usuaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtex_usuaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jtex_pass.requestFocus();
+        }
+    }//GEN-LAST:event_jtex_usuaKeyPressed
+
+    private void jtex_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtex_passKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+             this.ingresar_sistema();
+        }
+    }//GEN-LAST:event_jtex_passKeyPressed
 
     public static void main(String args[]) {
 
@@ -339,14 +334,7 @@ public class login extends javax.swing.JFrame {
 
     }
 
-//    private void icono2() {
-//        ImageIcon imagen = new ImageIcon("src/Img/pc.png");
-//
-//        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-//                label_logo.getWidth(), label_logo.getHeight(), Image.SCALE_DEFAULT));
-//        label_logo.setIcon(icono);
-//        this.repaint();
-//    }
+
     private void plaseholder() {
         TextPrompt prueba0 = new TextPrompt(" Ingrese el usuario", this.jtex_usua);
         TextPrompt prueba1 = new TextPrompt(" Ingrese la contraseña", this.jtex_pass);
@@ -356,12 +344,36 @@ public class login extends javax.swing.JFrame {
         this.lblSystem.setText("SYSTEM");
     }
 
-//    private void icono3() {
-//        ImageIcon imagen = new ImageIcon("src/Img/syst.png");
-//
-//        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-//                this.lblSystem.getWidth(), this.lblSystem.getHeight(), Image.SCALE_DEFAULT));
-//        this.lblSystem.setIcon(icono);
-//        this.repaint();
-//    }
+
+
+    private void ingresar_sistema() {
+        if (this.jtex_usua.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Le falta Ingresar el usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+        } else if (this.jtex_pass.getText().trim().isEmpty()) {
+
+        } else {
+            try {
+                usua = this.jtex_usua.getText().trim();
+                pass = new String(this.jtex_pass.getPassword()).trim();
+                Usuario usuario = UsuarioBo.validarUsuario(usua, pass);
+                jDashboard.adm = usuario.getRol();
+                jDashboard.usuaa = usuario.getPersona();
+                jDashboard.usua = usuario.getUsuario();
+                String usu = usuario.getRol();
+
+                if (usu.equals("empleado")) {
+                    jDashboard.est = true;
+                } else {
+                    jDashboard.est = false;
+                }
+
+                //visualizar panel principal
+                new jDashboard().setVisible(true);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "USUARIO", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 }
