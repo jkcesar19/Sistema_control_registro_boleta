@@ -12,7 +12,7 @@ public class Person {
     private String hijo;
     private int can_hijo;
     private String sexo;
-    private String estado;
+    private int estado;
 
     public int getIdpersona() {
         return idpersona;
@@ -94,13 +94,14 @@ public class Person {
         this.sexo = sexo;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
+
 
     @Override
     public String toString() {

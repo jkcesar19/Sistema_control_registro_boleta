@@ -25,7 +25,7 @@ public class MaquinariaImplDao implements MaquinariaDao {
     @Override
     public Vector Lista() throws SQLException {
         Vector listaMaquina = new Vector();
-        String sql = "SELECT * FROM vista_maquina";
+        String sql = "SELECT * FROM `vista_maquina`";
         st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {

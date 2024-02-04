@@ -32,7 +32,7 @@ public class UsuarioImplDao implements UsuarioDao {
     @Override
     public Vector Lista() throws SQLException {
         Vector lista = new Vector();
-        String sql = "SELECT * FROM vista_usuario ";
+        String sql = "SELECT * FROM `vista_usuario` ";
         st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {

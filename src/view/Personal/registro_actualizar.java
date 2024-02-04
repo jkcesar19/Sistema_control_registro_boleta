@@ -8,17 +8,17 @@ import javax.swing.JOptionPane;
 import static view.Personal.VistaPers.PanelVistaPer;
 
 public class registro_actualizar extends javax.swing.JPanel {
-
+    
     Person objPerson = new Person();
-
+    
     public registro_actualizar() {
         initComponents();
         plaseholder();
         cargar_txt_hijos(false);
         cargar_campos(VistaPers.estado);
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,7 +39,6 @@ public class registro_actualizar extends javax.swing.JPanel {
         txtHijos = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cheEstado = new javax.swing.JCheckBox();
         ComboSexo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
@@ -133,9 +132,6 @@ public class registro_actualizar extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        cheEstado.setBackground(new java.awt.Color(255, 255, 255));
-        cheEstado.setText("Estado");
-
         ComboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
 
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -169,9 +165,7 @@ public class registro_actualizar extends javax.swing.JPanel {
                                         .addComponent(txtTelefono))
                                     .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(cheEstado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addGap(65, 133, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ComboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -194,7 +188,6 @@ public class registro_actualizar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cheHijoos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cheEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ComboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(txtHijos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,7 +210,7 @@ public class registro_actualizar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -238,9 +231,9 @@ public class registro_actualizar extends javax.swing.JPanel {
                 }
                 break;
             case 'M':
-
+                
                 this.modificar();
-
+                
                 break;
         }
     }//GEN-LAST:event_btnAgregarMousePressed
@@ -250,7 +243,6 @@ public class registro_actualizar extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ComboSexo;
     private javax.swing.JPanel btnAgregar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox cheEstado;
     private javax.swing.JCheckBox cheHijoos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -276,11 +268,11 @@ public class registro_actualizar extends javax.swing.JPanel {
         TextPrompt prueba4 = new TextPrompt(" Ingrese el correo", this.txtCorreo);
         TextPrompt prueba5 = new TextPrompt(" Ingrese el N° hijos", this.txtHijos);
     }
-
+    
     private void cargar_txt_hijos(boolean b) {
         this.txtHijos.setEditable(b);
     }
-
+    
     private void registrar() {
         this.cargar_obj();
         try {
@@ -288,43 +280,37 @@ public class registro_actualizar extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Se Registró Correctamente", "MENSAJE --> Personal", JOptionPane.INFORMATION_MESSAGE);
                 this.cargar_tabla();
                 this.limpiarcampos();
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo Registrar", "MENSAJE --> Personal", JOptionPane.ERROR_MESSAGE);
                 this.limpiarcampos();
-
+                
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> Personal", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     private void cargar_obj() {
-
+        
         objPerson.setNombre(this.txtNombre.getText());
         objPerson.setNum_dni(Integer.parseInt(this.txtDni.getText()));
         objPerson.setDireccion(this.txtDireccion.getText());
         objPerson.setTelefono(Integer.parseInt(this.txtTelefono.getText()));
         objPerson.setCorreo(this.txtCorreo.getText());
         objPerson.setSexo(this.ComboSexo.getSelectedItem().toString());
-       
-
-        if (cheEstado.isSelected() == true) {
-            objPerson.setEstado("Activo");
-        } else {
-            objPerson.setEstado("Inactivo");
-        }
-
+        objPerson.setEstado(1);
+        
         if (cheHijoos.isSelected() == true) {
             objPerson.setHijo("SI");
-             objPerson.setCan_hijo(Integer.parseInt(this.txtHijos.getText()));
-
+            objPerson.setCan_hijo(Integer.parseInt(this.txtHijos.getText()));
+            
         } else {
             objPerson.setHijo("NO");
-             objPerson.setCan_hijo(0);
+            objPerson.setCan_hijo(0);
         }
-
+        
         if (raSoltero.isSelected() == true) {
             objPerson.setEs_civil("Soltero");
         } else if (raCasado.isSelected() == true) {
@@ -333,10 +319,10 @@ public class registro_actualizar extends javax.swing.JPanel {
             objPerson.setEs_civil("Divorsiado");
         } else if (raViudo.isSelected() == true) {
             objPerson.setEs_civil("Viudo");
-
+            
         }
     }
-
+    
     private void limpiarcampos() {
         this.txtHijos.setEditable(false);
         this.txtNombre.setText("");
@@ -345,7 +331,7 @@ public class registro_actualizar extends javax.swing.JPanel {
         this.txtCorreo.setText("");
         this.txtTelefono.setText("");
         this.txtHijos.setText("");
-        this.cheEstado.setSelected(false);
+    
         this.cheHijoos.setSelected(false);
         this.raSoltero.setSelected(false);
         this.raCasado.setSelected(false);
@@ -353,7 +339,7 @@ public class registro_actualizar extends javax.swing.JPanel {
         this.raViudo.setSelected(false);
         this.ComboSexo.setSelectedIndex(0);
     }
-
+    
     private void modificar() {
         this.cargar_obj();
         try {
@@ -361,17 +347,17 @@ public class registro_actualizar extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Se Registró Correctamente", "MENSAJE --> Personal", JOptionPane.INFORMATION_MESSAGE);
                 this.cargar_tabla();
                 this.limpiarcampos();
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "No se pudo Registrar", "MENSAJE --> Personal", JOptionPane.ERROR_MESSAGE);
                 this.limpiarcampos();
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "MENSAJE --> Personal", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     private void cargar_campos(boolean estado) {
         if (VistaPers.estado == true) {
             objPerson.setIdpersona(lista_eliminar.id);
@@ -381,13 +367,7 @@ public class registro_actualizar extends javax.swing.JPanel {
             this.txtCorreo.setText(lista_eliminar.correo);
             this.txtTelefono.setText("" + lista_eliminar.tel);
             this.ComboSexo.setSelectedItem(lista_eliminar.sex);
-            if ("Activo".equals(lista_eliminar.est)) {
-                this.cheEstado.setSelected(true);
-
-            } else {
-                this.cheEstado.setSelected(false);
-            }
-
+            
             if ("SI".equals(lista_eliminar.hijo)) {
                 this.txtHijos.setEditable(true);
                 this.txtHijos.setText("" + lista_eliminar.nun_hijo);
@@ -395,7 +375,7 @@ public class registro_actualizar extends javax.swing.JPanel {
             } else {
                 this.cheHijoos.setSelected(false);
             }
-
+            
             if (null != lista_eliminar.est_civil) {
                 switch (lista_eliminar.est_civil) {
                     case "Soltero":
@@ -414,20 +394,18 @@ public class registro_actualizar extends javax.swing.JPanel {
                         break;
                 }
             }
-
+            
         } else {
             limpiarcampos();
         }
-
+        
     }
-
     
-
     private void cargar_tabla() {
         lista_eliminar p1 = new lista_eliminar();
         p1.setSize(750, 343);
         p1.setLocation(0, 0);
-
+        
         PanelVistaPer.removeAll();
         PanelVistaPer.add(p1, BorderLayout.CENTER);
         PanelVistaPer.revalidate();

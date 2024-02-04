@@ -1,5 +1,7 @@
 package view.Personal;
 
+import business.PersonBo;
+import entity.Person;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -10,6 +12,7 @@ public class VistaPers extends javax.swing.JPanel {
 
     public static char op;
     protected static boolean estado = false;
+    Person obj = new Person();
 
     public VistaPers() {
         initComponents();
@@ -99,7 +102,7 @@ public class VistaPers extends javax.swing.JPanel {
             btnAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -138,7 +141,7 @@ public class VistaPers extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -152,6 +155,9 @@ public class VistaPers extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEliminarMousePressed(evt);
             }
         });
 
@@ -173,7 +179,7 @@ public class VistaPers extends javax.swing.JPanel {
             btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnEliminarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -205,13 +211,13 @@ public class VistaPers extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +266,8 @@ public class VistaPers extends javax.swing.JPanel {
     private void jPanel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MousePressed
         if (!" ".equals(lista_eliminar.nom)) {
             try {
+                Person material = PersonBo.validarPerson(lista_eliminar.nom,lista_eliminar.dni);
+                lista_eliminar.id = material.getIdpersona();
                 op = 'M';
                 estado = true;
                 this.cargar_ragistro_actualizar();
@@ -309,6 +317,35 @@ public class VistaPers extends javax.swing.JPanel {
     private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
         this.jPanel8.setBackground(new Color(21, 67, 96));
     }//GEN-LAST:event_jPanel8MouseExited
+
+    private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
+        if (!"".equals(lista_eliminar.nom)) {          
+            try {
+                char opt = 'E';
+                Person material = PersonBo.validarPerson(lista_eliminar.nom,lista_eliminar.dni);
+                int id = material.getIdpersona();
+                if (opt == 'E') {
+                    obj.setIdpersona(id);
+                    int rpta = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar",
+                            "Persona", JOptionPane.YES_NO_OPTION);
+                    if (rpta == 0) {
+                        if (PersonBo.EliminarPerson(obj)) {
+                            JOptionPane.showMessageDialog(this, "Se Eliminó Correctamente", "Persona",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            this.cargar_tabla();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo Eliminar", "Persona",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), " Perosnal", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione el Material", "Material", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

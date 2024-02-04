@@ -25,7 +25,7 @@ public class PersonImplDao implements PersonDao {
     @Override
     public Vector Lista() throws SQLException {
         Vector listaPerson = new Vector();
-        String sql = "SELECT * FROM persona";
+        String sql = "SELECT * FROM persona WHERE estado = "+1;
         st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
@@ -50,7 +50,7 @@ public class PersonImplDao implements PersonDao {
     public boolean grabar(Object object) throws SQLException {
         objPerson = (Person) object;
         try {
-            String sql = "{CALL,pro_registrar_persona(?,?,?,?,?,?,?,?,?,?)}";
+            String sql = "{CALL,pro_registrar_persona(?,?,?,?,?,?,?,?,?)}";
             cst = con.prepareCall(sql);
             cst.setString(1, objPerson.getNombre());
             cst.setInt(2, objPerson.getNum_dni());
@@ -61,7 +61,6 @@ public class PersonImplDao implements PersonDao {
             cst.setString(7, objPerson.getHijo());
             cst.setInt(8, objPerson.getCan_hijo());
             cst.setString(9, objPerson.getSexo());
-            cst.setString(10, objPerson.getEstado());
             cst.execute();
             cst.close();
             return true;
@@ -72,15 +71,24 @@ public class PersonImplDao implements PersonDao {
 
     @Override
     public boolean eliminar(Object object) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); 
-//To change body of generated methods, choose Tools | Templates.
+       objPerson = (Person) object;
+        try {
+            String sql = "{CALL,pro_eliminar_persona(?)}";
+            cst = con.prepareCall(sql);
+            cst.setInt(1, objPerson.getIdpersona());
+            cst.execute();
+            cst.close();
+            return true;
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
     @Override
     public boolean modificar(Object object) throws SQLException {
        objPerson = (Person) object;
         try {
-            String sql = "{CALL,pro_actualizar_persona(?,?,?,?,?,?,?,?,?,?,?)}";
+            String sql = "{CALL,pro_actualizar_persona(?,?,?,?,?,?,?,?,?,?)}";
             cst = con.prepareCall(sql);
             cst.setString(1, objPerson.getNombre());
             cst.setInt(2, objPerson.getNum_dni());
@@ -91,8 +99,7 @@ public class PersonImplDao implements PersonDao {
             cst.setString(7, objPerson.getHijo());
             cst.setInt(8, objPerson.getCan_hijo());
             cst.setString(9, objPerson.getSexo());
-            cst.setString(10, objPerson.getEstado());
-            cst.setInt(11, objPerson.getIdpersona());
+            cst.setInt(10, objPerson.getIdpersona());
             System.out.println(objPerson.getIdpersona());
             cst.execute();
             cst.close();
@@ -114,6 +121,31 @@ public class PersonImplDao implements PersonDao {
             persona.add(per);
         }
         return persona;
+    }
+
+    @Override
+    public Person validarPerson(String nom, int dni) throws SQLException {
+        Person person = null;
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        try {
+            String sql = "SELECT p.idpersona FROM persona p WHERE p.nombre = '"+nom+"' AND p.num_dni = "+dni+" AND p.estado = "+1;
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            if (rs.next()) {
+                person = new Person();
+                person.setIdpersona(rs.getInt("p.idpersona"));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            } else {
+                pst.close();
+            }
+        }
+        return person;
     }
 
 }

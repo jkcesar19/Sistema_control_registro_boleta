@@ -117,17 +117,17 @@ public class lista_eliminar extends javax.swing.JPanel {
     private void cargar_datos_actualizar_eliminar(MouseEvent evt) {
         try {
             index = this.PersonTable.getSelectedRow();
-            id = Integer.parseInt(this.PersonTable.getValueAt(index, 0).toString());
-            nom = this.PersonTable.getValueAt(index, 1).toString();
-            dni = Integer.parseInt(this.PersonTable.getValueAt(index, 2).toString());
-            dir = this.PersonTable.getValueAt(index, 3).toString();
-            tel = Integer.parseInt(this.PersonTable.getValueAt(index, 4).toString());
-            correo = this.PersonTable.getValueAt(index, 5).toString();
-            est_civil = this.PersonTable.getValueAt(index, 6).toString();
-            hijo = this.PersonTable.getValueAt(index, 7).toString();
-            nun_hijo = Integer.parseInt(this.PersonTable.getValueAt(index, 8).toString());
-            sex = this.PersonTable.getValueAt(index, 9).toString();
-            est = this.PersonTable.getValueAt(index, 10).toString();
+           
+            nom = this.PersonTable.getValueAt(index, 0).toString();
+            dni = Integer.parseInt(this.PersonTable.getValueAt(index, 1).toString());
+            dir = this.PersonTable.getValueAt(index, 2).toString();
+            tel = Integer.parseInt(this.PersonTable.getValueAt(index, 3).toString());
+            correo = this.PersonTable.getValueAt(index, 4).toString();
+            est_civil = this.PersonTable.getValueAt(index, 5).toString();
+            hijo = this.PersonTable.getValueAt(index, 6).toString();
+            nun_hijo = Integer.parseInt(this.PersonTable.getValueAt(index, 7).toString());
+            sex = this.PersonTable.getValueAt(index, 8).toString();
+            est = this.PersonTable.getValueAt(index, 9).toString();
         } catch (Exception e) {
 
         }

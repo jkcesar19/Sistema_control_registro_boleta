@@ -160,19 +160,14 @@ public class jpTicket extends javax.swing.JPanel {
 
         txtsubtotal.setEditable(false);
         txtsubtotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtsubtotal.setText("000001");
-        txtsubtotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsubtotalActionPerformed(evt);
-            }
-        });
+        txtsubtotal.setText("000.00");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Total:  S/.");
 
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtTotal.setText("0000001");
+        txtTotal.setText("000.00");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -636,10 +631,6 @@ public class jpTicket extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtsubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsubtotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsubtotalActionPerformed
 
     private void btnListarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListarMouseEntered
         this.btnListar.setBackground(new Color(0, 128, 0));

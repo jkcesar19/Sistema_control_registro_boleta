@@ -96,4 +96,41 @@ public class PersonBo {
         }
         return persona;
     } 
+       public static Person validarPerson(String nom,int dni) throws Exception {
+        Connection con = null;
+        Person material = null;
+        try {
+            con = Conexion.getConexion();
+            PersonDao personDao = new PersonImplDao(con);
+            material = personDao.validarPerson(nom,dni);
+            if (material == null) {
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+        return material;
+    }
+        public static boolean EliminarPerson(Person objPerson) throws Exception {
+        Connection con = null;
+        try {
+            con = Conexion.getConexion();
+            con.setAutoCommit(false);
+            PersonDao personDao = new PersonImplDao(con);
+            personDao.eliminar(objPerson);
+            con.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            con.rollback();
+            throw e;
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 }

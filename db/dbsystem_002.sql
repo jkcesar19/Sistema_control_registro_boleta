@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2024 a las 22:22:59
+-- Tiempo de generación: 04-02-2024 a las 15:40:22
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -25,8 +25,8 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_actualizar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10), IN `_estado` VARCHAR(10), IN `_id` INT(11))   BEGIN 
-UPDATE persona SET nombre = _nombre, num_dni = _dni, direccion = _direccion, telefono = _telefono , correo = _correo, es_civil = _civil, hijo = _hijo, can_hijo = _can_hijo, sexo = _sexo, estado = _estado WHERE idpersona = _id;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_actualizar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10), IN `_id` INT(11))   BEGIN 
+UPDATE persona SET nombre = _nombre, num_dni = _dni, direccion = _direccion, telefono = _telefono , correo = _correo, es_civil = _civil, hijo = _hijo, can_hijo = _can_hijo, sexo = _sexo WHERE idpersona = _id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_actualizar_stock_material` (IN `_canti` VARCHAR(11), IN `_estado` INT(11), IN `_id` INT(11))   BEGIN 
@@ -44,6 +44,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_eliminar_material` (IN `_id` INT(11))   BEGIN 
 UPDATE material SET estado = 0 WHERE idMaterial= _id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_eliminar_persona` (IN `_id` INT(11))   BEGIN
+UPDATE persona SET estado = 0 WHERE idpersona = _id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_eliminar_usuario` (IN `_id` INT(11))   BEGIN
@@ -80,8 +84,8 @@ INSERT INTO material(idMaterial, idprove, fecha_ingreso, serie, numero, idproduc
 VALUES (NULL,(SELECT P.idprove FROM proveedor P WHERE P.razonsocial = _prove), _fecha_ingreso, _serie, _numero,(SELECT p.id FROM producto p WHERE p.producto = _material), _cantidad,_cantidad,(SELECT U.id FROM unidad_medida U WHERE U.unidad_medida = _unidad),_precio, _total, _estado);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_registrar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10), IN `_estado` VARCHAR(10))   BEGIN 
-INSERT INTO persona(idpersona, nombre, num_dni, direccion, telefono, correo, es_civil, hijo, can_hijo, sexo, estado) VALUES (NULL,_nombre, _dni, _direccion, _telefono,_correo,_civil,_hijo,_can_hijo,_sexo,_estado);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_registrar_persona` (IN `_nombre` VARCHAR(45), IN `_dni` INT(11), IN `_direccion` VARCHAR(50), IN `_telefono` INT(11), IN `_correo` VARCHAR(50), IN `_civil` VARCHAR(15), IN `_hijo` VARCHAR(15), IN `_can_hijo` INT(11), IN `_sexo` VARCHAR(10))   BEGIN 
+INSERT INTO persona(idpersona, nombre, num_dni, direccion, telefono, correo, es_civil, hijo, can_hijo, sexo, estado) VALUES (NULL,_nombre, _dni, _direccion, _telefono,_correo,_civil,_hijo,_can_hijo,_sexo,1);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_registrar_producto` (IN `_producto` VARCHAR(50))   BEGIN
@@ -319,7 +323,7 @@ CREATE TABLE `persona` (
   `hijo` varchar(11) NOT NULL,
   `can_hijo` int(9) NOT NULL,
   `sexo` varchar(10) NOT NULL,
-  `estado` varchar(10) NOT NULL,
+  `estado` int(10) NOT NULL,
   `fecha_ingreso` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -328,18 +332,18 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`idpersona`, `nombre`, `num_dni`, `direccion`, `telefono`, `correo`, `es_civil`, `hijo`, `can_hijo`, `sexo`, `estado`, `fecha_ingreso`) VALUES
-(1, 'Jk Cesar Llaguento Carlos', 65743892, 'Buenos Aires - Bagua - Amazonas', 975761665, 'llaguentocarloscesar96@gmail.com', 'soltero', 'NO', 0, 'M', 'Activo', '0000-00-00 00:00:00'),
-(2, 'Roger Altamirano ', 65743892, 'Bagua - Amazonas', 975761665, 'altamirano@gmail.com', 'Soltero', 'NO', 0, 'M', 'Activo', '0000-00-00 00:00:00'),
-(3, 'Romina Carrasco Silva ', 65743892, 'Bagua - Amazonas', 975761665, 'carrascosilva@gmail.com', 'Soltero', 'NO', 0, 'F', 'Activo', '0000-00-00 00:00:00'),
-(4, 'Merlyn Marin', 98701243, 'Trita - Amazonas', 987456321, 'marin@gmail.com', 'Soltero', 'NO', 0, 'M', 'Activo', '2024-01-10 19:14:26'),
-(5, 'Jorge Luis Mayanga Castro', 42361641, 'Av. Bagua N° 3241', 987123654, 'mayanga@gmail.com', 'Casado', 'SI', 1, 'M', 'Activo', '0000-00-00 00:00:00'),
-(6, 'Carlos Rivera Rivera', 89764523, 'Huancayo', 908567432, 'carlosrivera', 'Soltero', 'SI', 1, 'M', 'Activo', '0000-00-00 00:00:00'),
-(7, 'Cristian Rodrigues Carrasco', 56431289, 'Av. Mariano Melgar N° 3524', 213765489, 'cristian@gmail.com', 'Viudo', 'SI', 0, 'M', 'Activo', '0000-00-00 00:00:00'),
-(8, 'Flor Pileña', 90876543, 'Huancayo', 123456789, 'florpileña@gmail.com', 'Casado', 'SI', 4, 'F', 'Activo', '0000-00-00 00:00:00'),
-(9, 'Sociedad de Julica', 21345678, 'Julica-Perú', 123456789, 'sociedad@gmail.com', 'Casado', 'SI', 4, 'M', 'Activo', '0000-00-00 00:00:00'),
-(10, 'Juan Carlos Rivera', 9876534, 'Jaen-Peú', 321432879, 'juancarlos@gmail.com', 'Casado', 'SI', 5, 'M', 'Activo', '0000-00-00 00:00:00'),
-(11, 'Jose Acuña Rivera', 43643622, 'Cajamarca - Perú', 353524523, 'acuñarivera@gmail.com', 'Viudo', 'SI', 23, 'M', 'Activo', '0000-00-00 00:00:00'),
-(12, 'Pepe Goicochea Bobadilla', 23456789, 'Luya - Amazonas', 123456987, 'pepe@gmail.com', 'Casado', 'SI', 3, 'M', 'Activo', '0000-00-00 00:00:00');
+(1, 'Jk Cesar Llaguento Carlos', 65743892, 'Buenos Aires - Bagua - Amazonas', 975761665, 'llaguentocarloscesar96@gmail.com', 'soltero', 'NO', 0, 'M', 1, '2024-02-04 14:11:51'),
+(2, 'Roger Altamirano ', 65743892, 'Bagua - Amazonas', 975761665, 'altamirano@gmail.com', 'Soltero', 'NO', 0, 'M', 1, '2024-02-04 14:11:56'),
+(3, 'Romina Carrasco Silva ', 65743892, 'Bagua - Amazonas', 975761665, 'carrascosilva@gmail.com', 'Soltero', 'NO', 0, 'F', 1, '2024-02-04 14:12:04'),
+(4, 'Merlyn Marin', 98701243, 'Trita - Amazonas', 987456321, 'marin@gmail.com', 'Soltero', 'NO', 0, 'M', 1, '2024-02-04 14:12:09'),
+(5, 'Jorge Luis Mayanga Castro', 42361641, 'Av. Bagua N° 3241', 987123654, 'mayanga@gmail.com', 'Casado', 'SI', 1, 'M', 1, '2024-02-04 14:12:14'),
+(6, 'Carlos Rivera Rivera', 89764523, 'Huancayo', 908567432, 'carlosrivera', 'Soltero', 'SI', 1, 'M', 1, '2024-02-04 14:12:20'),
+(7, 'Cristian Rodrigues Carrasco', 56431289, 'Av. Mariano Melgar N° 3524', 213765489, 'cristian@gmail.com', 'Viudo', 'SI', 0, 'M', 1, '2024-02-04 14:12:25'),
+(8, 'Flor Pileña', 90876543, 'Huancayo', 123456789, 'florpileña@gmail.com', 'Casado', 'SI', 4, 'F', 1, '2024-02-04 14:12:30'),
+(9, 'Sociedad de Julica', 21345678, 'Julica-Perú', 123456789, 'sociedad@gmail.com', 'Casado', 'SI', 4, 'M', 1, '2024-02-04 14:12:35'),
+(10, 'Juan Carlos Rivera', 9876534, 'Jaen-Peú', 321432879, 'juancarlos@gmail.com', 'Casado', 'SI', 5, 'M', 1, '2024-02-04 14:12:40'),
+(11, 'Jose Acuña Rivera', 43643622, 'Cajamarca - Perú', 353524523, 'acuñarivera@gmail.com', 'Viudo', 'SI', 23, 'M', 1, '2024-02-04 14:12:46'),
+(12, 'Pepe Goicochea Bobadilla', 23456789, 'Luya - Amazonas', 123456987, 'pepe@gmail.com', 'Casado', 'SI', 3, 'M', 1, '2024-02-04 14:12:50');
 
 -- --------------------------------------------------------
 
